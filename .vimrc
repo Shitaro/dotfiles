@@ -25,14 +25,15 @@ NeoBundle 'Shougo/vimproc', {
 NeoBundle 'Shougo/vimshell.vim'
 NeoBundle 'spolu/dwm.vim'
 NeoBundle 'Shougo/unite.vim'
-NeoBundle 'Rip-Rip/clang_complete',{
-	\ 'build' : {
-	\ 'windows' : "make",
-	\ 'cygwin' : "make", 
-	\ 'mac' : "make", 
-	\ 'unix' : "make", 
-	\ },
-	\ }
+" NeoBundle 'Rip-Rip/clang_complete',{
+" 	\ 'build' : {
+" 	\ 'windows' : "make",
+" 	\ 'cygwin' : "make", 
+" 	\ 'mac' : "make", 
+" 	\ 'unix' : "make", 
+" 	\ },
+" 	\ }
+NeoBundle 'justmao945/vim-clang'
 NeoBundle 'Shougo/neocomplete.vim'
 NeoBundle 'tyru/caw.vim'
 NeoBundle 'nanotech/jellybeans.vim'
@@ -43,8 +44,7 @@ NeoBundle 'Shougo/neosnippet'
 NeoBundle 'Shougo/neosnippet-snippets'
 NeoBundle 'tpope/vim-abolish'
 NeoBundle 'tpope/vim-surround'
-NeoBundle 'itchyny/calendar.vim'
-" NeoBundle 'jiangmiao/auto-pairs'
+NeoBundle 'jiangmiao/auto-pairs'
 
 call neobundle#end()
 

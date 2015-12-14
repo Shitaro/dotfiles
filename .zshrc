@@ -82,6 +82,7 @@ export PATH=$HOME/opt/stlink:$PATH
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+# bindkey -v
 export LANG=ja_JP.UTF-8
 if [ -f /usr/bin/screenfetch ]; then screenfetch; fi
 xkbcomp -I$HOME/.xkb ~/.xkb/keymap/mykbd $DISPLAY 2> /dev/null
