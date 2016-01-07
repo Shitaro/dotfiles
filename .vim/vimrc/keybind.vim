@@ -1,6 +1,6 @@
-nnoremap s <Nop>
-nnoremap <Space>h ^
-nnoremap <Space>l $
+" nnoremap s <Nop>
+" nnoremap <Space>h ^
+" nnoremap <Space>l $
 
 " ================================================================================
 "	tabpage

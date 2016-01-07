@@ -5,9 +5,7 @@ export ZSH=$HOME/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-# ZSH_THEME="robbyrussell"
 ZSH_THEME="steeef"
-# ZSH_THEME="agnoster"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -28,7 +26,7 @@ ZSH_THEME="steeef"
 # ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
-# COMPLETION_WAITING_DOTS="true"
+COMPLETION_WAITING_DOTS="true"
 
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
@@ -55,8 +53,8 @@ source $ZSH/oh-my-zsh.sh
 
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 export PATH=$HOME/opt/stlink:$PATH
-# export PATH=$HOME/opt/gcc-arm-none-eabi-4_9-2015q2/bin:$PATH
-# export MANPATH="/usr/local/man:$MANPATH"
+# export PATH=~/.local/bin:$PATH
+export EDITOR='vim'
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
@@ -80,6 +78,11 @@ export PATH=$HOME/opt/stlink:$PATH
 # For a full list of active aliases, run `alias`.
 #
 # Example aliases
+alias sakura="$HOME/opt/sh/sakura.sh"
+alias ltspice="$HOME/opt/sh/ltspice.sh"
+alias vimrc="vim ~/.vimrc"
+alias zshrc="vim ~/.zshrc"
+alias :q="exit"
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 # bindkey -v
@@ -87,3 +90,4 @@ export LANG=ja_JP.UTF-8
 if [ -f /usr/bin/screenfetch ]; then screenfetch; fi
 xkbcomp -I$HOME/.xkb ~/.xkb/keymap/mykbd $DISPLAY 2> /dev/null
 source $HOME/opt/sh/.sands
+# . /usr/share/zsh/site-contrib/powerline.zsh

@@ -6,6 +6,7 @@ set nocompatible
 
 set tabstop=4
 set autoindent
+" set autochdir
 set shiftwidth=4
 set incsearch
 set mouse=a
@@ -20,7 +21,6 @@ set showcmd
 set clipboard=unnamed,autoselect
 set list
 set listchars=tab:>-,trail:_,nbsp:%,eol:$
-
 "================================================================================
 " setup for tabpage
 "================================================================================
@@ -62,7 +62,7 @@ set showtabline=2
 " inoremap ' ''<Left>
 
 function! s:cpp()
-	setlocal path+=/usr/include,/usr/local/include,/usr/include/c++/5.1.0
+	setlocal path+=/usr/include,/usr/local/include,/usr/include/c++/5.3.0
 " 	,/home/shitaro/boost
 	setlocal tabstop=4
 	setlocal noexpandtab
@@ -82,3 +82,5 @@ augroup vimrc-set_filetype_cpp
 	autocmd!
 	autocmd BufReadPost $CPP_STDLIB/* if empty(&filetype) | set filetype=cpp | endif
 augroup END
+
+autocmd BufNewFile,BufRead *.tex set filetype=tex "Set filetype to tex when open .tex file"

@@ -25,31 +25,35 @@ NeoBundle 'Shougo/vimproc', {
 NeoBundle 'Shougo/vimshell.vim'
 NeoBundle 'spolu/dwm.vim'
 NeoBundle 'Shougo/unite.vim'
-" NeoBundle 'Rip-Rip/clang_complete',{
-" 	\ 'build' : {
-" 	\ 'windows' : "make",
-" 	\ 'cygwin' : "make", 
-" 	\ 'mac' : "make", 
-" 	\ 'unix' : "make", 
-" 	\ },
-" 	\ }
+NeoBundle 'Shougo/vimfiler'
 NeoBundle 'justmao945/vim-clang'
 NeoBundle 'Shougo/neocomplete.vim'
 NeoBundle 'tyru/caw.vim'
 NeoBundle 'nanotech/jellybeans.vim'
 NeoBundle 't9md/vim-quickhl'
-NeoBundle 'itchyny/lightline.vim'
 NeoBundle 'thinca/vim-quickrun'
 NeoBundle 'Shougo/neosnippet'
 NeoBundle 'Shougo/neosnippet-snippets'
 NeoBundle 'tpope/vim-abolish'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'jiangmiao/auto-pairs'
+" NeoBundle 'scrooloose/nerdtree'
+NeoBundle 'vim-jp/cpp-vim'
+NeoBundle 'sudo.vim'
+NeoBundle 'ctrlpvim/ctrlp.vim'
+NeoBundle 'itchyny/lightline.vim'
+NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'rust-lang/rust.vim'
+" NeoBundle 'lervag/vim-latex'
+NeoBundle 'lervag/vimtex'
+
+let g:rustfmt_autosave = 1
 
 call neobundle#end()
 
 filetype plugin indent on
-
+" let $PYTHONPATH='/usr/lib/python3.5/site-packages'
+" set laststatus=2
 set runtimepath+=$HOME/.vim/vimrc/
 runtime! vimrc/*.vim
 runtime! vimrc/plugins/*.vim

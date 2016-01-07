@@ -47,6 +47,7 @@ export XMODIFIERS="@im=fcitx"
 # xterm -geometry 80x50+494+51 &
 # xterm -geometry 80x20+494-0 &
 # exec xterm -geometry 80x66+0+0 -name login
+xset r rate 170 50
 source ~/.fehbg & 
-xkbcomp -I$HOME/.xkb ~/.xkb/keymap/mykbd $DISPLAY 2> /dev/null
-source ~/opt/sh/.sands & 
+# xkbcomp -I$HOME/.xkb ~/.xkb/keymap/mykbd $DISPLAY 2> /dev/null
+# source ~/opt/sh/.sands & 

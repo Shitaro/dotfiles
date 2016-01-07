@@ -1,6 +1,10 @@
-
-"quick run
-let g:quickrun_config={}
+" quick run
+let g:quickrun_config= {
+	\ "cpp" :{
+	\ 'command' : 'clang++',
+	\ 'cmdopt' : '-Wextra -std=c++14', 
+	\ }
+	\}
 let g:quickrun_config={'*': {'split': 'vertical'}}
 let g:quickrun_config['tex'] = {
 \ 'command' : 'latexmk',
