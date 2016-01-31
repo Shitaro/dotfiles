@@ -80,6 +80,7 @@ export EDITOR='vim'
 # Example aliases
 alias sakura="$HOME/opt/sh/sakura.sh"
 alias ltspice="$HOME/opt/sh/ltspice.sh"
+alias bib2html="$HOME/opt/sh/bib2html_wrapper.sh"
 alias vimrc="vim ~/.vimrc"
 alias zshrc="vim ~/.zshrc"
 alias :q="exit"

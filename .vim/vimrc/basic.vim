@@ -84,3 +84,10 @@ augroup vimrc-set_filetype_cpp
 augroup END
 
 autocmd BufNewFile,BufRead *.tex set filetype=tex "Set filetype to tex when open .tex file"
+
+augroup filetype
+	autocmd!
+	" bib file
+	autocmd BufRead, BufNewFile *.bib set filetype = bib
+	autocmd Filetype bib let &formatprg = "bibclean"
+augroup END

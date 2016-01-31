@@ -62,10 +62,20 @@ let g:quickrun_config.tmptex = {
 \                        '%a/tmptex.dvi'
 \                        ],
 \}
-
 vnoremap <silent><buffer> <F5> :QuickRun -mode v -type tmptex<CR>
 
 " QuickRun and view compile result quickly (but don't preview pdf file)
 nnoremap <silent><F5> :QuickRun<CR>
 
 autocmd BufWritePost,FileWritePost *.tex QuickRun tex
+
+let g:quickrun_config.bib = {
+\ 'command' : 'bib2html',
+\ 'srcfile' : expand("%:p"),
+\ 'outputter' : 'error',
+\ 'outputter/error/success' : 'null',
+\ 'outputter/error/error' : 'quickfix',
+\ 'exec' : '%c %o %s',
+\}
+
+autocmd BufWritePost, FileWritePost *.bib QuickRun -type bib
