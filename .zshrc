@@ -62,7 +62,7 @@ alias rm='rm -i'
 alias -g G='| grep'
 alias po='popd 1>/dev/null 2>/dev/null'
 alias pbcopy='xsel --clipboard --input'
-alias sands='source ~/bin/sands'
+alias sands='source ~/bin/sands.sh'
 alias df='df -h'
 alias du='du -h'
 if [ $SHLVL=2 ]; then
@@ -90,7 +90,7 @@ setopt magic_equal_subst
 neofetch
 if [ $SHLVL=2 ]; then
 	xkbcomp -I$HOME/.xkb $HOME/.xkb/keymap/keymap $DISPLAY 2> /dev/null
-	source ~/bin/sands
+	source ~/bin/sands.sh
 fi
 
 # History
