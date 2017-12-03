@@ -87,7 +87,7 @@ zstyle ':completion:*' list-colors "${LS_COLORS}"
 setopt magic_equal_subst
 
 # Execute commands
-screenfetch
+neofetch
 if [ $SHLVL=2 ]; then
 	xkbcomp -I$HOME/.xkb $HOME/.xkb/keymap/keymap $DISPLAY 2> /dev/null
 	source ~/bin/sands
