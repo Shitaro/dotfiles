@@ -62,9 +62,10 @@ set showtabline=2
 " inoremap ' ''<Left>
 
 function! s:cpp()
-	setlocal path+=/usr/include,/usr/local/include,/usr/include/c++/5.3.0
+	setlocal path+=/usr/include,/usr/local/include,/usr/include/c++/6.3.1
 " 	,/home/shitaro/boost
 	setlocal tabstop=4
+	setlocal shiftwidth=4
 	setlocal noexpandtab
 	setlocal matchpairs+=<:>
 	nnoremap <buffer><silent> <Space>ii :execute "?".&include<CR> :noh<CR> o
@@ -83,11 +84,55 @@ augroup vimrc-set_filetype_cpp
 	autocmd BufReadPost $CPP_STDLIB/* if empty(&filetype) | set filetype=cpp | endif
 augroup END
 
+" function! s:haskell() abort
+" 	setlocal tabstop=2
+" 	setlocal softtabstop=2
+" 	setlocal shiftwidth=2
+" 	setlocal expandtab
+" endfunction
+"
+" augroup vimrc-haskell
+" 	autocmd!
+" 	autocmd FileType hs call s:haskell()
+" augroup END
+
+"================================================================================
+" HTML cording in vim
+"================================================================================
+function! s:html() abort
+	setlocal tabstop=2
+	setlocal shiftwidth=2
+	setlocal noexpandtab
+	setlocal matchpairs+=<:>
+endfunction
+
+augroup vimrc-html
+	autocmd!
+	autocmd FileType html call s:html()
+augroup END
+
+"================================================================================
+" TeX cording in vim
+"================================================================================
 autocmd BufNewFile,BufRead *.tex set filetype=tex "Set filetype to tex when open .tex file"
 
-augroup filetype
+augroup ftplugin-bib
 	autocmd!
 	" bib file
 	autocmd BufRead, BufNewFile *.bib set filetype = bib
 	autocmd Filetype bib let &formatprg = "bibclean"
 augroup END
+
+"================================================================================
+" Asciidoc cording in vim
+"================================================================================
+
+" function! s:adoc() abort
+" 	set spell spelllang=en_us
+" endfunction
+
+augroup ftplugin-asciidoc
+	autocmd!
+	autocmd FileType asciidoc set spell spelllang=en_us
+augroup END
+

@@ -33,21 +33,21 @@ nnoremap U :undo<Space>
 " error color
 hi ErrorMsg color:white; background-color: #ec6aa1;
 
-nnoremap <Leader>pc :<C-u>panorama<Space>
-nnoremap <Leader>ps :<C-u>panorama switch<Space>
-nnoremap <Leader>pa :<C-u>panorama add<Space>
-nnoremap <Leader>pl :<C-u>panorama list<CR>
-nnoremap <Leader>pp :<C-u>panorama pushtab<Space>
-nnoremap <Leader>pu :<C-u>panorama pulltab<Space>
-nnoremap <Leader>pr :<C-u>panorama remove<Space>
-nnoremap <Leader>pv <C-S-e>
+" nnoremap <Leader>pc :<C-u>panorama<Space>
+" nnoremap <Leader>ps :<C-u>panorama switch<Space>
+" nnoremap <Leader>pa :<C-u>panorama add<Space>
+" nnoremap <Leader>pl :<C-u>panorama list<CR>
+" nnoremap <Leader>pp :<C-u>panorama pushtab<Space>
+" nnoremap <Leader>pu :<C-u>panorama pulltab<Space>
+" nnoremap <Leader>pr :<C-u>panorama remove<Space>
+" nnoremap <Leader>pv <C-S-e>
 
-source ~/.vimperator/vimppm/vimppm/plugin/vimppm.js
-vimppm 'twittperator.js'
+" source ~/.vimperator/vimppm/vimppm/plugin/vimppm.js
+" vimppm 'twittperator.js'
 
-let g:twittperator_use_ssl_connection_for_api_ep = 1
-let g:twittperator_use_chirp = 1
-nnoremap ,wl :tw<CR>
-nnoremap ,ww :tw<Space>
+" let g:twittperator_use_ssl_connection_for_api_ep = 1
+" let g:twittperator_use_chirp = 1
+" nnoremap ,wl :tw<CR>
+" nnoremap ,ww :tw<Space>
 
 echo "vimperatorrc loaded"

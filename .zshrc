@@ -1,94 +1,117 @@
-# Path to your oh-my-zsh installation.
-export ZSH=$HOME/.oh-my-zsh
+# Set zsh complete function
+autoload -U compinit ; compinit
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+# zstyle ':completion:*' format '%B%d%b'
+# zstyle ':completion:*' group-name ''
+# zstyle ':completion:*:default' menu select=2
+# zstyle ':completion:*' completer _oldlist _complete _match _history _ignored _approximate _prefix
 
-# Set name of the theme to load.
-# Look in ~/.oh-my-zsh/themes/
-# Optionally, if you set this to "random", it'll load a random theme each
-# time that oh-my-zsh is loaded.
-ZSH_THEME="steeef"
+setopt correct
 
-# Uncomment the following line to use case-sensitive completion.
-# CASE_SENSITIVE="true"
 
-# Uncomment the following line to disable bi-weekly auto-update checks.
-# DISABLE_AUTO_UPDATE="true"
-
-# Uncomment the following line to change how often to auto-update (in days).
-# export UPDATE_ZSH_DAYS=13
-
-# Uncomment the following line to disable colors in ls.
-# DISABLE_LS_COLORS="true"
-
-# Uncomment the following line to disable auto-setting terminal title.
-# DISABLE_AUTO_TITLE="true"
-
-# Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
-
-# Uncomment the following line to display red dots whilst waiting for completion.
-COMPLETION_WAITING_DOTS="true"
-
-# Uncomment the following line if you want to disable marking untracked files
-# under VCS as dirty. This makes repository status check for large repositories
-# much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
-
-# Uncomment the following line if you want to change the command execution time
-# stamp shown in the history command output.
-# The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-HIST_STAMPS="mm/dd/yyyy"
-
-# Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
-
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
-
-source $ZSH/oh-my-zsh.sh
-
-# User configuration
-
-export PATH=$HOME/bin:/usr/local/bin:$PATH
-export PATH=$HOME/opt/stlink:$PATH
-# export PATH=~/.local/bin:$PATH
-export EDITOR='vim'
-
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# ssh
-# export SSH_KEY_PATH="~/.ssh/dsa_id"
-
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
+# Set my prompt
+autoload -U promptinit; promptinit
+autoload -U colors; colors
 #
-# Example aliases
-alias sakura="$HOME/opt/sh/sakura.sh"
-alias ltspice="$HOME/opt/sh/ltspice.sh"
-alias bib2html="$HOME/opt/sh/bib2html_wrapper.sh"
-alias vimrc="vim ~/.vimrc"
-alias zshrc="vim ~/.zshrc"
-alias :q="exit"
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-# bindkey -v
-export LANG=ja_JP.UTF-8
-if [ -f /usr/bin/screenfetch ]; then screenfetch; fi
-xkbcomp -I$HOME/.xkb ~/.xkb/keymap/mykbd $DISPLAY 2> /dev/null
-source $HOME/opt/sh/.sands
-# . /usr/share/zsh/site-contrib/powerline.zsh
+# Settings of showing git status
+autoload -Uz vcs_info
+setopt prompt_subst
+
+zstyle ':vcs_info:git:*' check-for-changes true
+zstyle ':vcs_info:git:*' stagedstr "%F{green}!"
+zstyle ':vcs_info:git:*' unstagedstr "%F{magenta}+!"
+zstyle ':vcs_info:*' formats "%F{cyan}%c%u(%b)%f"
+zstyle ':vcs_info:*' actionformats '[%b|%a]'
+
+# %b branch info
+# %a action(ex.merge)
+# %c changes
+# %u uncommit
+
+precmd () { vcs_info }
+precmd_functions+=( precmd_vcs_info )
+
+# Left prompt
+PROMPT="%{$fg[cyan]%}$USER@$HOST%{$reset_color%}"
+# if [ ${#vcs_info_msg_0_} -ne 0 ]; then
+# 	PROMPT=$PROMPT' $vcs_info_msg_0_%{$reset_color%} '
+# 	echo "vcs_info_msg_0_ != 0"
+# fi
+# PROMPT=$PROMPT'%{$fg[cyan]%}%#%{$reset_color%} '
+PROMPT=$PROMPT'$vcs_info_msg_0_%{$fg[cyan]%}%#%{$reset_color%} '
+# Right prompt
+RPROMPT="%{$fg[cyan]%}[%d]%{$reset_color%}"
+
+# echo ${#vcs_info_msg_0_}
+
+# Set ls colors
+eval `dircolors ~/.colorrc`
+
+# Set alias
+alias :q=exit
+alias vi=vim
+alias ls='ls --color=auto -F'
+alias l='ls --color=auto -F'
+alias ll='ls -l --color=auto -h -F'
+alias la='(){ ls -all -h -F --color=auto $@ }'
+alias nc='(){ sudo wifi-menu $@ }'
+alias update-grub2='sudo grub-mkconfig -o /boot/grub/grub.cfg'
+alias pacman-conf='sudo vim /etc/pacman.conf'
+alias cp='cp -i'
+alias rm='rm -i'
+alias -g G='| grep'
+alias po='popd 1>/dev/null 2>/dev/null'
+alias pbcopy='xsel --clipboard --input'
+alias sands='source ~/bin/sands'
+alias df='df -h'
+alias du='du -h'
+if [ $SHLVL=2 ]; then
+	alias tmux='tmux attach || tmux new-session \; source-file ~/.tmux/session'
+fi
+
+export CLICOLOR=true
+
+DIRSTACKSIZE=1000
+# Use directory stack
+setopt auto_pushd
+# Can move directory without cd
+setopt auto_cd
+# Show the directory stack if change directory
+# chpwd_functions=($chpwd_functions dirs)
+
+# Enable to show Japanese file name
+setopt print_eight_bit
+
+zstyle ':completion:*' list-colors "${LS_COLORS}"
+
+setopt magic_equal_subst
+
+# Execute commands
+screenfetch
+if [ $SHLVL=2 ]; then
+	xkbcomp -I$HOME/.xkb $HOME/.xkb/keymap/keymap $DISPLAY 2> /dev/null
+	source ~/bin/sands
+fi
+
+# History
+# autoload history-search-end
+# zle -N history-beginning-search-backward-end history-search-end
+# zle -N history-beginning-search-forward-end history-search-end
+# bindkey "^P" history-beginning-search-backward-end
+# bindkey "^N" history-beginning-search-forward-end
+# bindkey "^S" history-incremental-search-forward
+
+# Path to command history file
+HISTFILE=~/.zsh_history
+# The number of history which preserves in a memory
+HISTSIZE=100000
+# The number of history which preserve in the history file
+SAVEHIST=100000
+# Save also runtime & rundate in history file
+setopt extended_history
+# Remove the old command from zsh history if it corresponds with new one
+setopt hist_ignore_all_dups
+# Share command history data with zsh process
+setopt share_history
+
+if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi

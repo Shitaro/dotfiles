@@ -43,11 +43,18 @@ NeoBundle 'sudo.vim'
 NeoBundle 'ctrlpvim/ctrlp.vim'
 NeoBundle 'itchyny/lightline.vim'
 NeoBundle 'tpope/vim-fugitive'
+
+" For Rust
 NeoBundle 'rust-lang/rust.vim'
+NeoBundle 'racer-rust/vim-racer'
+
 " NeoBundle 'lervag/vim-latex'
 NeoBundle 'lervag/vimtex'
+NeoBundle 'mattn/emmet-vim'
 
-let g:rustfmt_autosave = 1
+" For Haskell
+NeoBundle 'kana/vim-filetype-haskell'
+NeoBundle 'eagletmt/neco-ghc'
 
 call neobundle#end()
 
