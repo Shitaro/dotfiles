@@ -2,8 +2,10 @@ urxvt*saveLine: 65535
 urxvt*scrollBar: false
 urxvt*foreground: white
 urxvt*background: black
-urxvt*font: xft:Ricty:size=9:antialias=true
+urxvt*font: xft:Ricty:size=11:antialias=true
 urxvt*shading: 40
 urxvt*inheritPixmap: true
 
 urxvt*transparent: true
+
+urxvt*fading: 50
