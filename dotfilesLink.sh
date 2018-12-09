@@ -6,5 +6,6 @@ ln -sf ~/dotfiles/.xkb ~/.xkb
 ln -sf ~/dotfiles/.Xresources ~/.Xresources
 ln -sf ~/dotfiles/.Xresources.d ~/.Xresources.d
 ln -sf ~/dotfiles/.colorrc ~/.colorrc
-ln -sf ~/dotfiles/.config ~/.config/i3
-ln -sf ~/dotfiles/.config ~/.config/i3status
+ln -sf ~/dotfiles/.config/i3 ~/.config/i3
+ln -sf ~/dotfiles/.config/i3status ~/.config/i3status
+ln -sf ~/dotfiles/.config/nvim ~/.config/nvim
