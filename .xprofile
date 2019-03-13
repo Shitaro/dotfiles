@@ -1,8 +1,18 @@
-# set input method
-export DefaultImModule=fcitx
+### Fcitx
+# To type Japanese
+# Reference:
+# https://wiki.archlinux.org/index.php/Fcitx
+#
+# Set environment variables for IM modules
 export GTK_IM_MODULE=fcitx
 export QT_IM_MODULE=fcitx
 export XMODIFIERS="@im=fcitx"
+# Run automatically the fcitx process
+fcitx &
 
-# set typing responce
+### xset
+# Reference:
+# https://wiki.archlinux.org/index.php/Xorg/Keyboard_configuration#Using_xset
+#
+# Adjusting typematic delay and rate
 xset r rate 170 50
