@@ -11,4 +11,5 @@ ln -sfnv ~/dotfiles/.colorrc ~/.colorrc
 ln -sfnv ~/dotfiles/.config/i3 ~/.config/i3
 ln -sfnv ~/dotfiles/.config/nvim ~/.config/nvim
 ln -sfnv ~/dotfiles/.config/neofetch ~/.config/neofetch
+ln -sfnv ~/dotfiles/.config/rxvt-unicode ~/.config/rxvt-unicode
 ln -sfnv ~/dotfiles/.config/polybar ~/.config/polybar
