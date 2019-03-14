@@ -15,3 +15,4 @@ ln -sfnv ~/dotfiles/.config/neofetch ~/.config/neofetch
 ln -sfnv ~/dotfiles/.config/rxvt-unicode ~/.config/rxvt-unicode
 ln -sfnv ~/dotfiles/.config/polybar ~/.config/polybar
 ln -sfnv ~/dotfiles/.config/fish/config.fish ~/.config/fish/config.fish
+ln -sfnv ~/dotfiles/.config/fcitx/config ~/.config/fcitx/config
