@@ -2,6 +2,7 @@
 ln -sfnv ~/dotfiles/.latexmkrc ~/.latexmkrc
 ln -sfnv ~/dotfiles/.vimrc ~/.vimrc
 ln -sfnv ~/dotfiles/.vim ~/.vim
+ln -sfnv ~/dotfiles/.bashrc ~/.bashrc
 ln -sfnv ~/dotfiles/.zshrc ~/.zshrc
 ln -sfnv ~/dotfiles/.xkb ~/.xkb
 ln -sfnv ~/dotfiles/.xprofile ~/.xprofile
@@ -13,3 +14,4 @@ ln -sfnv ~/dotfiles/.config/nvim ~/.config/nvim
 ln -sfnv ~/dotfiles/.config/neofetch ~/.config/neofetch
 ln -sfnv ~/dotfiles/.config/rxvt-unicode ~/.config/rxvt-unicode
 ln -sfnv ~/dotfiles/.config/polybar ~/.config/polybar
+ln -sfnv ~/dotfiles/.config/fish/config.fish ~/.config/fish/config.fish

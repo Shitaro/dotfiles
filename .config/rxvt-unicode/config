@@ -2,7 +2,7 @@ urxvt*saveLine: 65535
 urxvt*scrollBar: false
 urxvt*foreground: white
 urxvt*background: black
-urxvt*font: xft:Ricty:size=11:antialias=true
+urxvt*font: xft:Cica:size=11:antialias=true, xtf:Noto Emoji, xft:Inconsolata for Powerline
 urxvt*shading: 40
 urxvt*inheritPixmap: true
 
