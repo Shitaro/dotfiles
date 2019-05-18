@@ -27,32 +27,29 @@ primary = #ffb52a
 secondary = #e60053
 alert = #bd2c40
 
-[bar/example]
-;monitor = ${env:MONITOR:HDMI-1}
+[bar/DP-0]
+; select the monitor to display
+monitor = ${env:MONITOR:DP-0}
+
+; shape of this bar
 width = 100%
-height = 14
-;offset-x = 1%
-;offset-y = 1%
-radius = 3.0
+height = 24
+offset-x = 0
+offset-y = 0
+radius = 0.0
 fixed-center = true
 
 background = ${colors.background}
 foreground = ${colors.foreground}
 
-line-size = 3
-line-color = #f00
-
-border-size = 4
-border-color = #00000000
-
+; alignment of contents of this bar
 padding-left = 0
-padding-right = 2
-
-module-margin-left = 1
-module-margin-right = 2
+padding-right = 0
+module-margin-left = 2
+module-margin-right = 0
 
 ; font-0 = fixed:pixelsize=9;1
-font-0 = Noto Sans Symbols:size=8:antialias=true;1
+font-0 = Noto Sans Symbols:size=9:antialias=true;1
 font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
 font-2 = Wuncon Siji:antialias=false:pixelsize=10;1
 ; font-2 = siji:pixelsize=10;1
@@ -61,58 +58,134 @@ modules-left = bspwm i3
 modules-center = 
 modules-right = filesystem backlight pulseaudio xkeyboard memory cpu wlan eth battery temperature date powermenu
 
-tray-position = right
-tray-padding = 2
-;tray-transparent = true
-;tray-background = #0063ff
+; cycle my workspaces by scrolling anywhere on the bar
+scroll-up = i3wm-wsnext
+scroll-down = i3wm-wsprev
 
-;wm-restack = bspwm
-;wm-restack = i3
-
-;override-redirect = true
-
-;scroll-up = bspwm-desknext
-;scroll-down = bspwm-deskprev
-
-;scroll-up = i3wm-wsnext
-;scroll-down = i3wm-wsprev
-
+; be the cursor if I can click
 cursor-click = pointer
+; be the cursor if I can scroll
 cursor-scroll = ns-resize
 
-[bar/bottom]
-bottom = true
-width = 100%
-height = 20
+[bar/DVI-D-0]
+; select the monitor to display
+monitor = ${env:MONITOR:DVI-D-0}
 
-radius = 6.0
-fixed-center = false
+; shape of this bar
+width = 100%
+height = 24
+offset-x = 0
+offset-y = 0
+radius = 0.0
+fixed-center = true
 
 background = ${colors.background}
 foreground = ${colors.foreground}
 
-line-size = 3
-line-color = #f00
-
-border-size = 4
-border-color = #00000000
-
+; alignment of contents of this bar
 padding-left = 0
-padding-right = 2
+padding-right = 0
+module-margin-left = 2
+module-margin-right = 0
 
-module-margin-left = 1
-module-margin-right = 2
-
-font-0 = fixed:pixelsize=10;1
+; font-0 = fixed:pixelsize=9;1
+font-0 = Noto Sans Symbols:size=9:antialias=true;1
 font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
-font-2 = siji:pixelsize=10;1
+font-2 = Wuncon Siji:antialias=false:pixelsize=10;1
+; font-2 = siji:pixelsize=10;1
 
-; modules-left = bspwm i3
+modules-left = bspwm i3
 modules-center = 
-modules-right = backlight temperature
+modules-right = filesystem backlight pulseaudio xkeyboard memory cpu wlan eth battery temperature date powermenu
 
-tray-position = right
-tray-padding = 2
+; cycle my workspaces by scrolling anywhere on the bar
+scroll-up = i3wm-wsnext
+scroll-down = i3wm-wsprev
+
+; be the cursor if I can click
+cursor-click = pointer
+; be the cursor if I can scroll
+cursor-scroll = ns-resize
+
+[bar/eDP-1-1]
+; select the monitor to display
+monitor = ${env:MONITOR:eDP-1-1}
+
+; shape of this bar
+width = 100%
+height = 24
+offset-x = 0
+offset-y = 0
+radius = 0.0
+fixed-center = true
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+; alignment of contents of this bar
+padding-left = 0
+padding-right = 0
+module-margin-left = 2
+module-margin-right = 0
+
+; font-0 = fixed:pixelsize=9;1
+font-0 = Noto Sans Symbols:size=9:antialias=true;1
+font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
+font-2 = Wuncon Siji:antialias=false:pixelsize=10;1
+; font-2 = siji:pixelsize=10;1
+
+modules-left = bspwm i3
+modules-center = 
+modules-right = filesystem backlight pulseaudio xkeyboard memory cpu wlan eth battery temperature date powermenu
+
+; cycle my workspaces by scrolling anywhere on the bar
+scroll-up = i3wm-wsnext
+scroll-down = i3wm-wsprev
+
+; be the cursor if I can click
+cursor-click = pointer
+; be the cursor if I can scroll
+cursor-scroll = ns-resize
+
+[bar/HDMI-1-1]
+; select the monitor to display
+monitor = ${env:MONITOR:HDMI-1-1}
+
+; shape of this bar
+width = 100%
+height = 24
+offset-x = 0
+offset-y = 0
+radius = 0.0
+fixed-center = true
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+; alignment of contents of this bar
+padding-left = 0
+padding-right = 0
+module-margin-left = 2
+module-margin-right = 0
+
+; font-0 = fixed:pixelsize=9;1
+font-0 = Noto Sans Symbols:size=9:antialias=true;1
+font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
+font-2 = Wuncon Siji:antialias=false:pixelsize=10;1
+; font-2 = siji:pixelsize=10;1
+
+modules-left = bspwm i3
+modules-center = 
+modules-right = filesystem backlight pulseaudio xkeyboard memory cpu wlan eth battery temperature date powermenu
+
+; cycle my workspaces by scrolling anywhere on the bar
+scroll-up = i3wm-wsnext
+scroll-down = i3wm-wsprev
+
+; be the cursor if I can click
+cursor-click = pointer
+; be the cursor if I can scroll
+cursor-scroll = ns-resize
 
 [module/backlight]
 type = internal/backlight

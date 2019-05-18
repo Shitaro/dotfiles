@@ -32,9 +32,9 @@ syntax enable
 
 set number "show column number
 set autoindent
-set tabstop=2 "number of spaces that a <Tab> in the file counts for.
-"set softtabstop=2 "number of spaces that a <Tab> counts for while performing editing operations, like inserting a <Tab> or using <BS>
-set shiftwidth=0 "number of spaces to use for each step of (auto)indent
+set tabstop=4 "number of spaces that a <Tab> in the file counts for.
+set softtabstop=0 "number of spaces that a <Tab> counts for while performing editing operations, like inserting a <Tab> or using <BS>
+set shiftwidth=4 "number of spaces to use for each step of (auto)indent
 set expandtab "use the appropriate number of spaces to insetrt a <Tab>
 set splitright
 set clipboard=unnamed
