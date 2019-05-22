@@ -11,5 +11,7 @@ polybar DP-0 &
 polybar DVI-D-0 &
 polybar eDP-1-1 &
 polybar HDMI-1-1 &
+polybar DP1 &
+polybar HDMI1 &
 
 echo "Bars launched..."
