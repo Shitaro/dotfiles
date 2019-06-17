@@ -9,6 +9,9 @@ alias po=popd
 export PATH="$HOME/bin/esp/xtensa-esp32-elf/bin:$PATH"
 export IDF_PATH="$HOME/bin/esp/esp-idf"
 
+# ocaml
+export PATH="$PATH":"$HOME/.opam/default/bin"
+
 # Apply my keymap
 if test $SHLVL=2
 	xkbcomp -I$HOME/.xkb $HOME/.xkb/keymap/keymap $DISPLAY 2> /dev/null
@@ -16,3 +19,6 @@ if test $SHLVL=2
 end
 
 neofetch
+
+# opam configuration
+source $HOME/.opam/opam-init/init.fish > /dev/null 2> /dev/null; or true
