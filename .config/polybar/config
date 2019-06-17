@@ -16,3 +16,11 @@ monitor = ${env:MONITOR:eDP-1-1}
 [bar/HDMI-1-1]
 inherit = bar/base
 monitor = ${env:MONITOR:HDMI-1-1}
+
+[bar/DP1]
+inherit = bar/base
+monitor = ${env:MONITOR:DP1}
+
+[bar/HDMI1]
+inherit = bar/base
+monitor = ${env:MONITOR:HDMI1}
