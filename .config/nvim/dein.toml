@@ -6,23 +6,23 @@ repo = 'Shougo/dein.vim'
 [[plugins]]
 repo = 'nanotech/jellybeans.vim'
 hook_add = '''
-colorscheme jellybeans
+    colorscheme jellybeans
 '''
 
 # lightline
-# [[plugins]]
-# repo = 'itchyny/lightline.vim'
-# hook_add = '''
-# 	source ~/.config/nvim/plugins/lightline.vim
-# '''
+[[plugins]]
+repo = 'itchyny/lightline.vim'
+hook_add = '''
+    source ~/.config/nvim/plugins/lightline.vim
+'''
 
 [[plugins]]
 repo = 'vim-airline/vim-airline'
 hook_add = '''
-  let g:airline_powerline_fonts = 1
-  let g:airline_theme = 'jellybeans'
-  let g:airline#extensions#tabline#enabled = 1
-  let g:airline_section_z = airline#section#create(['windowswap', '%3p%% ', 'linenr', ':%3v'])
+    let g:airline_powerline_fonts = 1
+    let g:airline_theme = 'jellybeans'
+    let g:airline#extensions#tabline#enabled = 1
+    let g:airline_section_z = airline#section#create(['windowswap', '%3p%% ', 'linenr', ':%3v'])
 '''
 [[plugins]]
 repo = 'vim-airline/vim-airline-themes'
@@ -30,7 +30,7 @@ repo = 'vim-airline/vim-airline-themes'
 [[plugins]]
 repo = 'Shougo/denite.nvim'
 hook_add = '''
-	source ~/.config/nvim/plugins/denite.vim
+    source ~/.config/nvim/plugins/denite.vim
 '''
 
 [[plugins]]
@@ -42,17 +42,17 @@ repo = 'Raimondi/delimitMate'
 [[plugins]]
 repo = 'w0rp/ale'
 hook_add = '''
-  let g:ale_sign_column_always = 1
-  let g:ale_fix_on_save = 1
-  let g:ale_completion_enabled = 1
-  let g:ale_sign_error = 'x'
-  let g:ale_sign_warning = '⚠'
-  let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
-  let g:ale_statusline_format = ['x %d', '⚠ %d', '⬥ ok']
-  let g:ale_linters = {
-      \ 'c' : ['clangd'],
-      \ 'cpp' : ['clangd']
-  \}
+    let g:ale_sign_column_always = 1
+    let g:ale_fix_on_save = 1
+    let g:ale_completion_enabled = 1
+    let g:ale_sign_error = 'x'
+    let g:ale_sign_warning = '⚠'
+    let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+    let g:ale_statusline_format = ['x %d', '⚠ %d', '⬥ ok']
+    let g:ale_linters = {
+        \ 'c' : ['clangd'],
+        \ 'cpp' : ['clangd']
+    \}
 '''
 
 [[plugins]]
@@ -62,19 +62,19 @@ repo = 'scrooloose/nerdtree'
 repo = 'lyuts/vim-rtags'
 on_ft = ['c', 'cpp']
 hook_add = '''
-  let g:rtagsUseDefaultMappings = 0
-  let g:rtagsAutoLaunchRdm = 1
+    let g:rtagsUseDefaultMappings = 0
+    let g:rtagsAutoLaunchRdm = 1
 '''
 hook_source = '''
-  noremap <Leader>ri :call rtags#SymbolInfo()<CR>
+    noremap <Leader>ri :call rtags#SymbolInfo()<CR>
 '''
 
 [[plugins]]
 repo = 'tyru/caw.vim'
 hook_add = '''
-  nmap <Leader>c <Plug>(caw:hatpos:toggle)
-  vmap <Leader>c <Plug>(caw:hatpos:toggle)
+    nmap <Leader>c <Plug>(caw:hatpos:toggle)
+    vmap <Leader>c <Plug>(caw:hatpos:toggle)
 
-  nmap <Leader>, <Plug>(caw:zeropos:toggle)
-  vmap <Leader>, <Plug>(caw:zeropos:toggle)
+    nmap <Leader>, <Plug>(caw:zeropos:toggle)
+    vmap <Leader>, <Plug>(caw:zeropos:toggle)
 '''

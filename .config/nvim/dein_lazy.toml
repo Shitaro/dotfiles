@@ -3,17 +3,17 @@
 repo = 'Shougo/deoplete.nvim'
 on_i = 1
 hook_add = '''
-	source ~/.config/nvim/plugins/deoplete.vim
+    source ~/.config/nvim/plugins/deoplete.vim
 '''
 
 [[plugins]]
 repo = 'zchee/deoplete-clang'
 on_ft = ['c', 'cpp', 'cmake']
 hook_source = '''
-  let g:deoplete#sources#clang#libclang_path = '/usr/lib/libclang.so'
-  let g:deoplete#sources#clang#clang_header = '/usr/lib/clang'
-  let g:deoplete#sources#clang#sort_algo = 'priority'
-  " let g:deoplete#sources#clang#clang_complete_database="./build/"
+    let g:deoplete#sources#clang#libclang_path = '/usr/lib/libclang.so'
+    let g:deoplete#sources#clang#clang_header = '/usr/lib/clang'
+    let g:deoplete#sources#clang#sort_algo = 'priority'
+    " let g:deoplete#sources#clang#clang_complete_database="./build/"
 '''
 
 [[plugins]]
@@ -28,7 +28,7 @@ depends = ['neosnippet-snippets', 'context_filetype.vim']
 on_event = 'InsertCharPre' # when a character is typed in Insert mode, before inserting the character
 on_ft = 'snippet'
 hook_source = '''
-	source ~/.config/nvim/plugins/neosnippet.vim
+    source ~/.config/nvim/plugins/neosnippet.vim
 '''
 
 [[plugins]]
@@ -36,3 +36,10 @@ repo = 'Shougo/neosnippet-snippets'
 
 [[plugins]]
 repo = 'Shougo/context_filetype.vim'
+
+[[plugins]]
+repo = 'vim-scripts/DoxygenToolkit.vim'
+on_ft = ['c', 'cpp', 'h', 'hpp']
+hook_source = '''
+    nmap <leader>dox :Dox<CR>
+'''
