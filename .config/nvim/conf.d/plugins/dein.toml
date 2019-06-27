@@ -2,19 +2,17 @@
 [[plugins]]
 repo = 'Shougo/dein.vim'
 
-# jollybeans
+# colorschemes
 [[plugins]]
-repo = 'nanotech/jellybeans.vim'
+repo = 'rafi/awesome-vim-colorschemes'
 hook_add = '''
-    colorscheme jellybeans
+	colorscheme jellybeans
 '''
 
 # lightline
 [[plugins]]
 repo = 'itchyny/lightline.vim'
-hook_add = '''
-    source ~/.config/nvim/plugins/lightline.vim
-'''
+hook_add = 'call shitaro_conf#dein#lightline#hook_add()'
 
 [[plugins]]
 repo = 'vim-airline/vim-airline'
@@ -30,7 +28,12 @@ repo = 'vim-airline/vim-airline-themes'
 [[plugins]]
 repo = 'Shougo/denite.nvim'
 hook_add = '''
-    source ~/.config/nvim/plugins/denite.vim
+    call shitaro_conf#dein#denite#hook_add()
+'''
+
+[plugins.ftplugin]
+denite = '''
+    nnoremap <silent><buffer><expr> <C-a>   denite#do_map('do_action', 'my_file_rec')
 '''
 
 [[plugins]]
@@ -54,9 +57,6 @@ hook_add = '''
         \ 'cpp' : ['clangd']
     \}
 '''
-
-[[plugins]]
-repo = 'scrooloose/nerdtree'
 
 [[plugins]]
 repo = 'lyuts/vim-rtags'
