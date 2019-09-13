@@ -186,4 +186,4 @@ new_window 1pixel
 # }
 exec_always --no-startup-id $HOME/dotfiles/bin/polybar.sh
 
-exec --no-startup-id feh --bg-scale $HOME/Pictures/wallpapers/illust_id_49860843.jpg
+exec --no-startup-id ~/.fehbg
