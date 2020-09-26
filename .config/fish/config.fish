@@ -7,6 +7,7 @@ alias po=popd
 
 # to develop esp32
 export PATH="$HOME/bin/esp/xtensa-esp32-elf/bin:$PATH"
+export PATH="/opt/intel/mkl/:$PATH"
 export IDF_PATH="$HOME/bin/esp/esp-idf"
 
 # ocaml
