@@ -4,7 +4,7 @@ This repository contains my personal configuration files managed with [chezmoi](
 
 ## What's Included
 
-This repository manages my Zsh configuration (`.zshrc`, `.zshenv`, `.zprofile`), along with the Antidote plugin list (`.zsh_plugins.txt`). It also includes my WezTerm terminal configuration (`.wezterm.lua`), Git settings (`.gitconfig`), Atuin shell history configuration (`.config/atuin/config.toml`), and Starship prompt configuration (`.config/starship.toml`).
+This repository manages my Zsh configuration (`.zshrc`, `.zshenv`, `.zprofile`), along with the Antidote plugin list (`.zsh_plugins.txt`). It also includes my WezTerm terminal configuration (`.wezterm.lua`), Git settings (`.gitconfig`), Atuin shell history configuration (`.config/atuin/config.toml`), Starship prompt configuration (`.config/starship.toml`), and AeroSpace tiling window manager configuration (`.config/aerospace/aerospace.toml`).
 
 ## Setting Up a New Machine
 
@@ -30,10 +30,10 @@ First, install the required dependencies and chezmoi together:
 
 ```bash
 brew install chezmoi antidote fzf atuin starship
-brew install --cask wezterm@nightly font-hack-nerd-font
+brew install --cask wezterm@nightly font-hack-nerd-font nikitabobko/tap/aerospace
 ```
 
-Antidote is the Zsh plugin manager used by this configuration. WezTerm (nightly build is required for latest config options) is my terminal emulator of choice, fzf provides fuzzy finding capabilities, atuin provides enhanced shell history, and starship is the shell prompt.
+Antidote is the Zsh plugin manager used by this configuration. WezTerm (nightly build is required for latest config options) is my terminal emulator of choice, fzf provides fuzzy finding capabilities, atuin provides enhanced shell history, starship is the shell prompt, and AeroSpace is an i3-like tiling window manager.
 
 ### Apply Dotfiles
 
@@ -59,6 +59,17 @@ The `.gitconfig` in this repository contains the repository owner's name and ema
 git config --global user.name "Your Name"
 git config --global user.email "your@email.com"
 ```
+
+### Configure AeroSpace
+
+After applying dotfiles, launch AeroSpace and grant accessibility permission:
+
+1. Open AeroSpace: `open -a AeroSpace`
+2. macOS will prompt for accessibility permission
+3. Go to **System Settings** → **Privacy & Security** → **Accessibility**
+4. Enable **AeroSpace**
+
+AeroSpace will start managing your windows immediately after permission is granted.
 
 ### Restart Your Shell
 
