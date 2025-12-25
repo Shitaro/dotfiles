@@ -224,7 +224,13 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_wid
 	end
 
 	local pane = tab.active_pane
-	local process = pane.foreground_process_name:match("([^/]+)$") or ""
+	local process_path = pane.foreground_process_name or ""
+	local process
+	if process_path:lower():find("claude") then
+		process = "claude"
+	else
+		process = process_path:match("([^/]+)$") or ""
+	end
 	local cwd = pane.current_working_dir
 	local dir = ""
 	if cwd then
@@ -232,7 +238,9 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_wid
 		dir = dir:gsub("^" .. os.getenv("HOME"), "~")
 		dir = dir:match("([^/]+)/?$") or dir
 	end
-	local title = " " .. process .. ": " .. dir .. " "
+	local ARROW = utf8.char(0xe0b1)  -- Powerline thin arrow
+	local FOLDER = utf8.char(0xf07b) -- フォルダアイコン
+	local title = " " .. process .. " " .. ARROW .. " " .. FOLDER .. " " .. dir .. " "
 	-- 三角形(2) + スペース(2) 用に余裕を確保
 	title = wezterm.truncate_right(title, max_width - 4)
 
