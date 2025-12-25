@@ -67,6 +67,9 @@ config.cursor_blink_rate = 500
 
 config.leader = { key = "b", mods = "CMD", timeout_milliseconds = 10000 }
 config.keys = {
+	-- Claude Code: Shift+Enter で改行
+	{ key = "Enter", mods = "SHIFT", action = wezterm.action.SendString("\x1b\r") },
+
 	-- ペイン分割
 	{ key = "\\", mods = "LEADER", action = wezterm.action.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
 	{ key = "-", mods = "LEADER", action = wezterm.action.SplitVertical({ domain = "CurrentPaneDomain" }) },
