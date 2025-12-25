@@ -70,14 +70,50 @@ exec zsh
 
 ## Daily Usage
 
-When you make changes to your dotfiles locally, use `chezmoi re-add` to sync those changes back to the chezmoi source directory. Then commit and push the changes:
+### Editing Dotfiles
+
+There are two workflows for editing dotfiles:
+
+#### Recommended: Edit source files directly
+
+Edit the source file in `~/.local/share/chezmoi/`, then apply changes to the target:
 
 ```bash
-chezmoi re-add
+chezmoi edit ~/.wezterm.lua   # Opens the source file in your editor
+chezmoi apply                 # Apply changes to target files
+```
+
+Or navigate to the source directory and edit directly:
+
+```bash
+chezmoi cd                    # Go to ~/.local/share/chezmoi
+vim private_dot_wezterm.lua   # Edit the source file
+chezmoi apply                 # Apply changes to target files
+```
+
+This approach keeps the source of truth in the chezmoi repo and changes are immediately tracked in git.
+
+#### Alternative: Edit target files and sync back
+
+If you edit target files directly (e.g., `~/.wezterm.lua`), sync changes back to chezmoi:
+
+```bash
+chezmoi add ~/.wezterm.lua    # Sync a specific file
+# or
+chezmoi re-add                # Sync all managed files
+```
+
+### Committing Changes
+
+After editing, commit and push your changes:
+
+```bash
 chezmoi cd && git add -A && git commit -m "Update config" && git push
 ```
 
-To pull the latest changes from the remote repository and apply them, simply run:
+### Pulling Updates
+
+To pull the latest changes from the remote repository and apply them:
 
 ```bash
 chezmoi update
