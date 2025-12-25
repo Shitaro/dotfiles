@@ -30,7 +30,7 @@ First, install the required dependencies and chezmoi together:
 
 ```bash
 brew install chezmoi antidote fzf
-brew install --cask wezterm@nightly
+brew install --cask wezterm@nightly font-hack-nerd-font
 ```
 
 Antidote is the Zsh plugin manager used by this configuration. WezTerm (nightly build is required for latest config options) is my terminal emulator of choice, and fzf provides fuzzy finding capabilities.
