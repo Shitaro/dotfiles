@@ -4,7 +4,7 @@ This repository contains my personal configuration files managed with [chezmoi](
 
 ## What's Included
 
-This repository manages my Zsh configuration (`.zshrc`, `.zshenv`, `.zprofile`), along with the Antidote plugin list (`.zsh_plugins.txt`). It also includes my WezTerm terminal configuration (`.wezterm.lua`) and Git settings (`.gitconfig`).
+This repository manages my Zsh configuration (`.zshrc`, `.zshenv`, `.zprofile`), along with the Antidote plugin list (`.zsh_plugins.txt`). It also includes my WezTerm terminal configuration (`.wezterm.lua`), Git settings (`.gitconfig`), Atuin shell history configuration (`.config/atuin/config.toml`), and Starship prompt configuration (`.config/starship.toml`).
 
 ## Setting Up a New Machine
 
