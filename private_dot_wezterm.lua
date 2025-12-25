@@ -37,6 +37,7 @@ config.tab_bar_at_bottom = false
 config.use_fancy_tab_bar = false
 config.show_new_tab_button_in_tab_bar = false
 config.show_close_tab_button_in_tabs = false
+config.tab_max_width = 50
 config.window_frame = {
 	font = wezterm.font("Hack Nerd Font Mono"),
 	font_size = 12.0,
@@ -198,21 +199,22 @@ config.use_ime = true
 -- タブタイトル
 -- =============================================================================
 
-local SOLID_LEFT_ARROW = wezterm.nerdfonts.ple_lower_right_triangle
-local SOLID_RIGHT_ARROW = wezterm.nerdfonts.ple_upper_left_triangle
+-- Powerline Extra グリフ (utf8.char で直接指定)
+-- 平行四辺形スタイル
+local SOLID_LEFT_ARROW = utf8.char(0xe0ba)   -- ple_lower_left_triangle (◣)
+local SOLID_RIGHT_ARROW = utf8.char(0xe0bc)  -- ple_upper_left_triangle (◤)
 
 wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_width)
-	local background = "#24283b"
-	local foreground = "#565f89"
-	-- タブ間の背景色（config.colors.tab_bar.background と同じ色・透過率）
-	local edge_background = "rgba(26, 27, 38, 0.55)"
+	-- 非アクティブタブの色
+	local tab_bg = "#24283b"
+	local tab_fg = "#565f89"
+	-- タブバー背景（透過）
+	local bar_bg = "rgba(26, 27, 38, 0.55)"
 
 	if tab.is_active then
-		background = "#7aa2f7"
-		foreground = "#1a1b26"
+		tab_bg = "#7aa2f7"
+		tab_fg = "#1a1b26"
 	end
-
-	local edge_foreground = background
 
 	local pane = tab.active_pane
 	local process = pane.foreground_process_name:match("([^/]+)$") or ""
@@ -223,20 +225,30 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_wid
 		dir = dir:gsub("^" .. os.getenv("HOME"), "~")
 		dir = dir:match("([^/]+)/?$") or dir
 	end
-	local title = "  " .. process .. ": " .. dir .. "  "
-	title = wezterm.truncate_right(title, max_width)
+	local title = " " .. process .. ": " .. dir .. " "
+	-- 三角形(2) + スペース(2) 用に余裕を確保
+	title = wezterm.truncate_right(title, max_width - 4)
 
-	return {
-		{ Background = { Color = edge_background } },
-		{ Foreground = { Color = edge_foreground } },
-		{ Text = SOLID_LEFT_ARROW },
-		{ Background = { Color = background } },
-		{ Foreground = { Color = foreground } },
-		{ Text = title },
-		{ Background = { Color = edge_background } },
-		{ Foreground = { Color = edge_foreground } },
-		{ Text = SOLID_RIGHT_ARROW },
-	}
+	local result = {}
+
+	-- 左端: 最初のタブ以外は三角形を追加
+	if tab.tab_index > 0 then
+		table.insert(result, { Background = { Color = bar_bg } })
+		table.insert(result, { Foreground = { Color = tab_bg } })
+		table.insert(result, { Text = SOLID_LEFT_ARROW })
+	end
+	-- タブ本体
+	table.insert(result, { Background = { Color = tab_bg } })
+	table.insert(result, { Foreground = { Color = tab_fg } })
+	table.insert(result, { Text = title })
+	-- 右端: bar_bg の上に tab_bg の三角形
+	table.insert(result, { Background = { Color = bar_bg } })
+	table.insert(result, { Foreground = { Color = tab_bg } })
+	table.insert(result, { Text = SOLID_RIGHT_ARROW })
+	-- タブ間スペース
+	table.insert(result, { Text = "  " })
+
+	return result
 end)
 
 -- =============================================================================
