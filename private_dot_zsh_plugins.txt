@@ -1,0 +1,24 @@
+# =============================================================================
+# Zsh Plugins (managed by Antidote)
+# =============================================================================
+# Loading order matters:
+#   1. completions   - Add completion definitions to fpath
+#   2. fzf-tab       - Must be loaded after compinit, before other plugins
+#   3. autosuggestions
+#   4. syntax-highlighting - MUST be last (wraps ZLE widgets)
+# =============================================================================
+
+# 1. Additional completion definitions
+zsh-users/zsh-completions kind:fpath path:src
+
+# 2. Replace Tab completion with fzf interface
+Aloxaf/fzf-tab
+
+# 3. Fish-like autosuggestions (gray text from history)
+zsh-users/zsh-autosuggestions
+
+# 4. Syntax highlighting
+zsh-users/zsh-syntax-highlighting
+
+# 5. Vim mode (must be loaded after syntax-highlighting)
+softmoth/zsh-vim-mode
