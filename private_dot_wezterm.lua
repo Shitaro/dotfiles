@@ -211,6 +211,13 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_wid
 	-- タブバー背景（透過）
 	local bar_bg = "rgba(26, 27, 38, 0.85)"
 
+	-- ホバー時は明るくする
+	if hover then
+		tab_bg = "#3b4261"
+		tab_fg = "#a9b1d6"
+	end
+
+	-- アクティブタブ
 	if tab.is_active then
 		tab_bg = "#7aa2f7"
 		tab_fg = "#1a1b26"
@@ -260,6 +267,7 @@ wezterm.on("update-right-status", function(window, pane)
 	-- Nerd Font アイコン（utf8.char で確実に指定）
 	local SOLID_LEFT = utf8.char(0xe0b2) -- Powerline 左セパレーター
 	local FOLDER = utf8.char(0xf07b) -- フォルダアイコン
+	local GIT_BRANCH = utf8.char(0xe0a0) -- Git ブランチアイコン
 
 	-- Vim モード（zsh から送信される user var）
 	local vim_mode = pane:get_user_vars().VIM_MODE or ""
@@ -306,9 +314,10 @@ wezterm.on("update-right-status", function(window, pane)
 
 	-- CWD
 	local cwd = pane:get_current_working_dir()
+	local cwd_path_raw = nil
 	if cwd then
-		local cwd_path = cwd.file_path or tostring(cwd)
-		cwd_path = cwd_path:gsub("^" .. os.getenv("HOME"), "~")
+		cwd_path_raw = cwd.file_path or tostring(cwd)
+		local cwd_path = cwd_path_raw:gsub("^" .. os.getenv("HOME"), "~")
 
 		if mode_text ~= "" then
 			table.insert(cells, { Foreground = { Color = "#24283b" } })
@@ -321,6 +330,23 @@ wezterm.on("update-right-status", function(window, pane)
 		table.insert(cells, { Background = { Color = "#24283b" } })
 		table.insert(cells, { Attribute = { Intensity = "Normal" } })
 		table.insert(cells, { Text = " " .. FOLDER .. " " .. cwd_path .. " " })
+	end
+
+	-- Git ブランチ
+	if cwd_path_raw then
+		local success, stdout = wezterm.run_child_process({ "git", "-C", cwd_path_raw, "rev-parse", "--abbrev-ref", "HEAD" })
+		if success then
+			local branch = stdout:gsub("%s+", "")
+			if branch ~= "" then
+				table.insert(cells, { Foreground = { Color = "#9ece6a" } })
+				table.insert(cells, { Background = { Color = "#24283b" } })
+				table.insert(cells, { Text = SOLID_LEFT })
+				table.insert(cells, { Foreground = { Color = "#1a1b26" } })
+				table.insert(cells, { Background = { Color = "#9ece6a" } })
+				table.insert(cells, { Attribute = { Intensity = "Bold" } })
+				table.insert(cells, { Text = " " .. GIT_BRANCH .. " " .. branch .. " " })
+			end
+		end
 	end
 
 	window:set_right_status(wezterm.format(cells))
