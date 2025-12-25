@@ -10,4 +10,4 @@ When editing configuration files, always edit the **source files in this directo
 - Edit `dot_zshrc` instead of `~/.zshrc`
 - Edit `dot_gitconfig` instead of `~/.gitconfig`
 
-After editing, remind the user to run `chezmoi apply` to apply changes.
+After editing, automatically run `chezmoi apply` to apply changes.

@@ -10,11 +10,11 @@ local config = wezterm.config_builder()
 config.color_scheme = "Tokyo Night"
 
 -- フォント設定
-config.font = wezterm.font("Hack Nerd Font Mono")
+config.font = wezterm.font("UDEV Gothic NF")
 config.font_size = 11.0
 
 -- 背景透過
-config.window_background_opacity = 0.55
+config.window_background_opacity = 0.85
 config.macos_window_background_blur = 20
 
 -- 初期ウィンドウサイズ
@@ -39,17 +39,17 @@ config.show_new_tab_button_in_tab_bar = false
 config.show_close_tab_button_in_tabs = false
 config.tab_max_width = 50
 config.window_frame = {
-	font = wezterm.font("Hack Nerd Font Mono"),
+	font = wezterm.font("UDEV Gothic NF"),
 	font_size = 12.0,
 	inactive_titlebar_bg = "none",
 	active_titlebar_bg = "none",
 }
 
 -- タブバーの色（背景と一体化）
--- Tokyo Night 背景色 #1a1b26 (rgb: 26,27,38) + window_background_opacity と同じ透過率 0.55
+-- Tokyo Night 背景色 #1a1b26 (rgb: 26,27,38) + window_background_opacity と同じ透過率 0.85
 config.colors = {
 	tab_bar = {
-		background = "rgba(26, 27, 38, 0.55)",
+		background = "rgba(26, 27, 38, 0.85)",
 		inactive_tab_edge = "none",
 		active_tab = {
 			bg_color = "#7aa2f7",
@@ -209,7 +209,7 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_wid
 	local tab_bg = "#24283b"
 	local tab_fg = "#565f89"
 	-- タブバー背景（透過）
-	local bar_bg = "rgba(26, 27, 38, 0.55)"
+	local bar_bg = "rgba(26, 27, 38, 0.85)"
 
 	if tab.is_active then
 		tab_bg = "#7aa2f7"
