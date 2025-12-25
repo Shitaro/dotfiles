@@ -18,31 +18,47 @@ First, install Homebrew if it's not already installed:
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ```
 
-### Install chezmoi and Apply Dotfiles
+On Apple Silicon Macs, add Homebrew to your PATH after installation:
 
-The easiest way to get started is to run the following one-liner, which installs chezmoi and applies the dotfiles in a single command:
+```bash
+eval "$(/opt/homebrew/bin/brew shellenv)"
+```
+
+### Install Dependencies and chezmoi
+
+First, install the required dependencies and chezmoi together:
+
+```bash
+brew install chezmoi antidote fzf
+brew install --cask wezterm
+```
+
+Antidote is the Zsh plugin manager used by this configuration. WezTerm is my terminal emulator of choice, and fzf provides fuzzy finding capabilities.
+
+### Apply Dotfiles
+
+Apply the dotfiles with chezmoi:
+
+```bash
+chezmoi init --apply Shitaro/dotfiles
+```
+
+Alternatively, you can use the one-liner (installs chezmoi and applies in a single command):
 
 ```bash
 sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply Shitaro/dotfiles
 ```
 
-Alternatively, you can install chezmoi via Homebrew and then initialize:
+Note: If using the one-liner, make sure to install the dependencies (antidote, fzf, wezterm) before restarting your shell.
+
+### Configure Git User
+
+The `.gitconfig` in this repository contains the repository owner's name and email. Update it for your environment:
 
 ```bash
-brew install chezmoi
-chezmoi init --apply Shitaro/dotfiles
+git config --global user.name "Your Name"
+git config --global user.email "your@email.com"
 ```
-
-### Install Dependencies
-
-After applying the dotfiles, you'll need to install some dependencies for everything to work properly:
-
-```bash
-brew install antidote fzf
-brew install --cask wezterm
-```
-
-Antidote is the Zsh plugin manager used by this configuration. WezTerm is my terminal emulator of choice, and fzf provides fuzzy finding capabilities.
 
 ### Restart Your Shell
 
