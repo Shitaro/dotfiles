@@ -1,0 +1,61 @@
+# =============================================================================
+# Atuin Configuration
+# https://docs.atuin.sh/configuration/config/
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# Sync (disabled - local only)
+# -----------------------------------------------------------------------------
+sync_address = ""
+auto_sync = false
+
+# -----------------------------------------------------------------------------
+# Search
+# -----------------------------------------------------------------------------
+# Search mode: prefix, fulltext, fuzzy, skim
+search_mode = "fuzzy"
+
+# Filter mode: global, host, session, directory
+filter_mode = "global"
+
+# Filter mode for Ctrl+R in shell (when pressing up arrow)
+filter_mode_shell_up_key_binding = "session"
+
+# Style: auto, full, compact
+style = "compact"
+
+# Show preview of command
+show_preview = true
+
+# Maximum preview height
+max_preview_height = 4
+
+# Inline height (0 = fullscreen)
+inline_height = 20
+
+# -----------------------------------------------------------------------------
+# History
+# -----------------------------------------------------------------------------
+# Store failed commands
+store_failed = true
+
+# Update check
+update_check = false
+
+# Secrets filter (hide commands with secrets)
+secrets_filter = true
+
+# -----------------------------------------------------------------------------
+# UI
+# -----------------------------------------------------------------------------
+# Show help in search
+show_help = true
+
+# Exit on Esc
+exit_mode = "return-original"
+
+# -----------------------------------------------------------------------------
+# Keybindings
+# -----------------------------------------------------------------------------
+# Vim keybindings: vim-normal, vim-insert, emacs, auto
+keymap_mode = "vim-normal"

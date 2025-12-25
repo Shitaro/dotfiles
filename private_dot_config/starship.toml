@@ -1,0 +1,126 @@
+# =============================================================================
+# Starship Configuration
+# High-speed, practical, minimal
+# =============================================================================
+#
+# Layout Examples:
+#
+#   Normal (local):
+#   ┌─────────────────────────────────────────────────────────────────────────┐
+#   │ ~/p/m/project  main !?                                                 │
+#   │ ❯ _                                                      1.2s 14:35   │
+#   └─────────────────────────────────────────────────────────────────────────┘
+#
+#   Git changes:
+#   ┌─────────────────────────────────────────────────────────────────────────┐
+#   │ ~/p/m/project  main !+?                                                │
+#   │ ❯ _                                                           14:35   │
+#   └─────────────────────────────────────────────────────────────────────────┘
+#
+#   Command failed:
+#   ┌─────────────────────────────────────────────────────────────────────────┐
+#   │ ~/p/m/project  main                                                    │
+#   │ ✗ _                                                   127 1.5s 14:36   │
+#   └─────────────────────────────────────────────────────────────────────────┘
+#
+#   SSH session:
+#   ┌─────────────────────────────────────────────────────────────────────────┐
+#   │ server ~/p/m/project  main                                             │
+#   │ ❯ _                                                           14:35   │
+#   └─────────────────────────────────────────────────────────────────────────┘
+#
+#   Left:  hostname(SSH only) + directory + git_branch + git_status
+#   Right: status(on fail) + cmd_duration(>1s) + time
+#   Line2: ❯ (success) / ✗ (fail)
+#
+#   Note: Vim mode is displayed in WezTerm's status bar (bottom right)
+#
+# =============================================================================
+
+"$schema" = 'https://starship.rs/config-schema.json'
+
+# Performance
+command_timeout = 800
+scan_timeout = 30
+
+# Add blank line between prompts
+add_newline = true
+
+# -----------------------------------------------------------------------------
+# Format: 2-line layout
+# -----------------------------------------------------------------------------
+format = """
+$hostname\
+$directory\
+[](fg:#88C0D0 bg:#5b4d7a)\
+$git_branch\
+$git_status\
+[](fg:#5b4d7a)\
+\n$character"""
+
+right_format = """$status$cmd_duration$time"""
+
+# -----------------------------------------------------------------------------
+# Hostname (SSH only)
+# -----------------------------------------------------------------------------
+[hostname]
+ssh_only = true
+format = "[ $hostname ](fg:#2E3440 bg:#ebcb8b bold)[](fg:#ebcb8b bg:#88C0D0)"
+style = ""
+
+# -----------------------------------------------------------------------------
+# Directory
+# -----------------------------------------------------------------------------
+[directory]
+truncation_length = 10
+truncate_to_repo = false
+truncation_symbol = "…/"
+format = "[ $path ]($style)[$read_only]($read_only_style)"
+style = "fg:#2E3440 bg:#88C0D0 bold"
+read_only = " 󰌾 "
+read_only_style = "fg:#f7768e bg:#88C0D0"
+
+# -----------------------------------------------------------------------------
+# Git
+# -----------------------------------------------------------------------------
+[git_branch]
+format = "[[ $symbol$branch ](fg:#e0def4 bg:#5b4d7a)]($style)"
+symbol = ""
+style = "bg:#5b4d7a"
+
+[git_status]
+format = '[[($all_status$ahead_behind )](fg:#eb6f92 bg:#5b4d7a)]($style)'
+style = "bg:#5b4d7a"
+
+# -----------------------------------------------------------------------------
+# Character (prompt symbol)
+# -----------------------------------------------------------------------------
+[character]
+success_symbol = "[❯](bold green)"
+error_symbol = "[✗](bold red)"
+
+# -----------------------------------------------------------------------------
+# Right prompt
+# -----------------------------------------------------------------------------
+[status]
+disabled = false
+format = "[Error $status: $symbol]($style) "
+style = "red"
+map_symbol = true
+recognize_signal_code = true
+symbol = "error"
+not_executable_symbol = "no permission"
+not_found_symbol = "not found"
+sigint_symbol = "interrupted"
+signal_symbol = "signal"
+
+[cmd_duration]
+min_time = 1000
+format = "[$duration]($style) "
+style = "yellow"
+
+[time]
+disabled = false
+format = "[$time]($style)"
+style = "dimmed white"
+time_format = "%H:%M"
