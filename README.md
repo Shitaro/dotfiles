@@ -29,11 +29,11 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 First, install the required dependencies and chezmoi together:
 
 ```bash
-brew install chezmoi antidote fzf
+brew install chezmoi antidote fzf atuin starship
 brew install --cask wezterm@nightly font-hack-nerd-font
 ```
 
-Antidote is the Zsh plugin manager used by this configuration. WezTerm (nightly build is required for latest config options) is my terminal emulator of choice, and fzf provides fuzzy finding capabilities.
+Antidote is the Zsh plugin manager used by this configuration. WezTerm (nightly build is required for latest config options) is my terminal emulator of choice, fzf provides fuzzy finding capabilities, atuin provides enhanced shell history, and starship is the shell prompt.
 
 ### Apply Dotfiles
 
