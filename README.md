@@ -2,9 +2,22 @@
 
 This repository contains my personal configuration files managed with [chezmoi](https://www.chezmoi.io/).
 
+## Requirements
+
+- macOS (tested on Apple Silicon)
+- Homebrew
+
 ## What's Included
 
-This repository manages my Zsh configuration (`.zshrc`, `.zshenv`, `.zprofile`), along with the Antidote plugin list (`.zsh_plugins.txt`). It also includes my WezTerm terminal configuration (`.wezterm.lua`), Git settings (`.gitconfig`), Atuin shell history configuration (`.config/atuin/config.toml`), Starship prompt configuration (`.config/starship.toml`), and AeroSpace tiling window manager configuration (`.config/aerospace/aerospace.toml`).
+| Category | Files | Description |
+|----------|-------|-------------|
+| Zsh | `.zshrc`, `.zshenv`, `.zprofile`, `.zsh_plugins.txt` | Shell configuration and Antidote plugin list |
+| WezTerm | `.wezterm.lua` | Terminal emulator configuration |
+| Git | `.gitconfig` | Git settings |
+| Atuin | `.config/atuin/config.toml` | Enhanced shell history |
+| Starship | `.config/starship.toml` | Shell prompt |
+| AeroSpace | `.config/aerospace/aerospace.toml` | Tiling window manager |
+| SketchyBar | `.config/sketchybar/` | Status bar with AeroSpace integration |
 
 ## Setting Up a New Machine
 
@@ -29,11 +42,23 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 First, install the required dependencies and chezmoi together:
 
 ```bash
-brew install chezmoi antidote fzf atuin starship
-brew install --cask wezterm@nightly font-hack-nerd-font nikitabobko/tap/aerospace
+brew install chezmoi antidote fzf atuin starship sketchybar
+brew install --cask wezterm@nightly nikitabobko/tap/aerospace
+brew install --cask font-hack-nerd-font font-jetbrains-mono-nerd-font
 ```
 
-Antidote is the Zsh plugin manager used by this configuration. WezTerm (nightly build is required for latest config options) is my terminal emulator of choice, fzf provides fuzzy finding capabilities, atuin provides enhanced shell history, starship is the shell prompt, and AeroSpace is an i3-like tiling window manager.
+| Package | Description |
+|---------|-------------|
+| chezmoi | Dotfiles manager |
+| antidote | Zsh plugin manager |
+| fzf | Fuzzy finder |
+| atuin | Enhanced shell history |
+| starship | Shell prompt |
+| sketchybar | Customizable status bar |
+| wezterm@nightly | Terminal emulator (nightly required for latest config options) |
+| aerospace | i3-like tiling window manager |
+| font-hack-nerd-font | Terminal and general UI font |
+| font-jetbrains-mono-nerd-font | SketchyBar workspace indicators (includes Nerd Font icons) |
 
 ### Apply Dotfiles
 
@@ -49,7 +74,7 @@ Alternatively, you can use the one-liner (installs chezmoi and applies in a sing
 sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply Shitaro/dotfiles
 ```
 
-Note: If using the one-liner, make sure to install the dependencies (antidote, fzf, wezterm) before restarting your shell.
+Note: If using the one-liner, make sure to install all dependencies listed above before restarting your shell.
 
 ### Configure Git User
 
@@ -70,6 +95,47 @@ After applying dotfiles, launch AeroSpace and grant accessibility permission:
 4. Enable **AeroSpace**
 
 AeroSpace will start managing your windows immediately after permission is granted.
+
+#### AeroSpace Keybindings
+
+| Keybinding | Action |
+|------------|--------|
+| `Alt + H/J/K/L` | Focus window (left/down/up/right) |
+| `Alt + Shift + H/J/K/L` | Move window (left/down/up/right) |
+| `Alt + 0-9` | Switch to workspace |
+| `Alt + Shift + 0-9` | Move window to workspace |
+| `Alt + Tab` | Switch to previous workspace |
+| `Alt + Shift + Tab` | Move workspace to next monitor |
+| `Alt + /` | Toggle tiles layout |
+| `Alt + ,` | Toggle accordion layout |
+| `Alt + -/=` | Resize window |
+| `Alt + Shift + ;` | Enter service mode |
+
+**Service Mode** (`Alt + Shift + ;`):
+
+| Keybinding | Action |
+|------------|--------|
+| `Esc` | Reload config and exit |
+| `R` | Reset layout |
+| `F` | Toggle floating/tiling |
+| `Backspace` | Close all windows but current |
+
+### Configure SketchyBar
+
+SketchyBar is configured to display AeroSpace workspace indicators with the following color scheme:
+
+- **Orange** - Currently focused workspace
+- **Green** - Visible workspace on another monitor
+- **Blue** - Background workspace (has windows but not visible)
+- **Gray** - Empty workspace
+
+Each workspace also displays an icon indicating which monitor it belongs to (external monitor or built-in display).
+
+To start SketchyBar:
+
+```bash
+brew services start sketchybar
+```
 
 ### Restart Your Shell
 
@@ -132,4 +198,11 @@ chezmoi update
 
 ## Useful Commands
 
-To add a new file to chezmoi management, use `chezmoi add <file>`. To edit a managed file, use `chezmoi edit <file>`. You can preview changes with `chezmoi diff` before applying them with `chezmoi apply`. The `chezmoi cd` command takes you directly to the source directory where the dotfiles are stored.
+| Command | Description |
+|---------|-------------|
+| `chezmoi add <file>` | Add a new file to chezmoi management |
+| `chezmoi edit <file>` | Edit a managed file |
+| `chezmoi diff` | Preview changes before applying |
+| `chezmoi apply` | Apply changes to target files |
+| `chezmoi cd` | Go to the source directory |
+| `chezmoi update` | Pull and apply latest changes from remote |
