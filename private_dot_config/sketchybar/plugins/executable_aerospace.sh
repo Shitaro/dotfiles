@@ -16,23 +16,21 @@ for ws in $VISIBLE_WORKSPACES; do
     fi
 done
 
-# Check which monitor this workspace belongs to
-# Monitor 1 = external, Monitor 2 = built-in
-EXTERNAL_WORKSPACES=$(aerospace list-workspaces --monitor 1 2>/dev/null)
-IS_EXTERNAL=false
-for ws in $EXTERNAL_WORKSPACES; do
-    if [ "$ws" = "$SID" ]; then
-        IS_EXTERNAL=true
+# Find which monitor this workspace belongs to and get its name
+MONITOR_NAME=""
+for mid in $(aerospace list-monitors --format '%{monitor-id}'); do
+    if aerospace list-workspaces --monitor "$mid" 2>/dev/null | grep -qx "$SID"; then
+        MONITOR_NAME=$(aerospace list-monitors --format '%{monitor-id}|%{monitor-name}' | grep "^$mid|" | cut -d'|' -f2)
         break
     fi
 done
 
-# Icon settings for monitor indication
-# External monitor: monitor icon, Built-in: laptop icon
-if [ "$IS_EXTERNAL" = true ]; then
-    MONITOR_ICON="󰍹"
-else
+# Icon based on monitor name
+# Built-in display: laptop icon, External display: monitor icon
+if [[ "$MONITOR_NAME" == *"Built-in"* ]]; then
     MONITOR_ICON="󰌢"
+else
+    MONITOR_ICON="󰍹"
 fi
 
 # Tokyo Night theme colors:
