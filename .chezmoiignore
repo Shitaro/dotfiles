@@ -1,0 +1,4 @@
+private_dot_config/karabiner/node_modules/
+private_dot_config/karabiner/node_modules/**
+.config/karabiner/node_modules/
+.config/karabiner/node_modules/**

@@ -1,2 +1,3 @@
 .vim/.*
 .vim/bundle/*
+private_dot_config/karabiner/node_modules/

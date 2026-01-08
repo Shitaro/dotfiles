@@ -6,6 +6,8 @@ This repository contains my personal configuration files managed with [chezmoi](
 
 - macOS (tested on Apple Silicon)
 - Homebrew
+- Karabiner-Elements
+- bun
 
 ## What's Included
 
@@ -18,6 +20,7 @@ This repository contains my personal configuration files managed with [chezmoi](
 | Starship | `.config/starship.toml` | Shell prompt |
 | AeroSpace | `.config/aerospace/aerospace.toml` | Tiling window manager |
 | SketchyBar | `.config/sketchybar/` | Status bar with AeroSpace integration |
+| Karabiner | `.config/karabiner/` | Keyboard remapping (karabiner.ts + rules JSON) |
 
 ## Setting Up a New Machine
 
@@ -43,7 +46,8 @@ First, install the required dependencies and chezmoi together:
 
 ```bash
 brew install chezmoi antidote fzf atuin starship sketchybar
-brew install --cask wezterm@nightly nikitabobko/tap/aerospace
+brew install bun
+brew install --cask wezterm@nightly nikitabobko/tap/aerospace karabiner-elements
 brew install --cask font-hack-nerd-font font-jetbrains-mono-nerd-font
 ```
 
@@ -55,8 +59,10 @@ brew install --cask font-hack-nerd-font font-jetbrains-mono-nerd-font
 | atuin | Enhanced shell history |
 | starship | Shell prompt |
 | sketchybar | Customizable status bar |
+| bun | JS runtime (used for karabiner.ts generation) |
 | wezterm@nightly | Terminal emulator (nightly required for latest config options) |
 | aerospace | i3-like tiling window manager |
+| karabiner-elements | Keyboard remapping utility |
 | font-hack-nerd-font | Terminal and general UI font |
 | font-jetbrains-mono-nerd-font | SketchyBar workspace indicators (includes Nerd Font icons) |
 
@@ -135,6 +141,20 @@ To start SketchyBar:
 
 ```bash
 brew services start sketchybar
+```
+
+### Configure Karabiner-Elements
+
+- `karabiner.json` is generated and not managed directly
+- Source files are in `~/.config/karabiner/`:
+  - `karabiner.rules.json` (existing rules in JSON)
+  - `karabiner.ts` (generator)
+  - `karabiner.base.json` (base profile used to seed `karabiner.json`)
+
+To regenerate:
+
+```bash
+chezmoi apply --source-path .chezmoiscripts/run_onchange_10-karabiner-ts.sh.tmpl
 ```
 
 ### Restart Your Shell

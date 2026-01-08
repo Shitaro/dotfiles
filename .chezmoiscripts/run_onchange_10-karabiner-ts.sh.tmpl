@@ -1,0 +1,42 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# checksum: {{ include "private_dot_config/karabiner/karabiner.ts" | sha256sum }}
+# checksum: {{ include "private_dot_config/karabiner/karabiner.rules.json" | sha256sum }}
+# checksum: {{ include "private_dot_config/karabiner/karabiner.base.json" | sha256sum }}
+# checksum: {{ include "private_dot_config/karabiner/package.json" | sha256sum }}
+# checksum: {{ include "private_dot_config/karabiner/bun.lock" | sha256sum }}
+
+target_dir="{{ .chezmoi.homeDir }}/.config/karabiner"
+source_dir="{{ .chezmoi.sourceDir }}/private_dot_config/karabiner"
+base_config="$source_dir/karabiner.base.json"
+
+if [ ! -d "$target_dir" ]; then
+  mkdir -p "$target_dir"
+fi
+
+if ! command -v bun >/dev/null 2>&1; then
+  echo "bun not found; install bun to generate karabiner.json" >&2
+  exit 1
+fi
+
+if [ ! -f "$source_dir/package.json" ]; then
+  echo "package.json not found in $source_dir" >&2
+  exit 1
+fi
+
+if [ ! -f "$base_config" ]; then
+  echo "base config not found: $base_config" >&2
+  exit 1
+fi
+
+if [ ! -f "$target_dir/karabiner.json" ]; then
+  cp "$base_config" "$target_dir/karabiner.json"
+fi
+
+work_dir="$source_dir"
+
+cd "$work_dir"
+
+bun install
+bun run karabiner.ts
