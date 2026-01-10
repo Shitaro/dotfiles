@@ -46,6 +46,6 @@ tasks:
     desc: Install Homebrew packages
     platforms: [darwin]
     cmds:
-      - brew install go-task antidote fzf atuin starship sketchybar bun
+      - brew install go-task antidote fzf atuin starship sketchybar
       - brew install --cask wezterm@nightly nikitabobko/tap/aerospace karabiner-elements
       - brew install --cask font-hack-nerd-font font-jetbrains-mono-nerd-font

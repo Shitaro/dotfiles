@@ -49,6 +49,12 @@ cd ~/dotfiles
 brew install go-task
 ```
 
+Install bun:
+
+```bash
+curl -fsSL https://bun.com/install | bash
+```
+
 Install required packages:
 
 ```bash
