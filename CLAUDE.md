@@ -1,13 +1,13 @@
 # Claude Code Instructions
 
-This is a chezmoi-managed dotfiles repository.
+This is a Task-managed dotfiles repository.
 
 ## Editing Dotfiles
 
-When editing configuration files, always edit the **source files in this directory** (`~/.local/share/chezmoi/`), not the target files in the home directory.
+Edit the source files in this directory (`~/dotfiles/`).
 
-- Edit `private_dot_wezterm.lua` instead of `~/.wezterm.lua`
-- Edit `dot_zshrc` instead of `~/.zshrc`
-- Edit `dot_gitconfig` instead of `~/.gitconfig`
+- Edit `home/.wezterm.lua` instead of `~/.wezterm.lua`
+- Edit `home/.zshrc` instead of `~/.zshrc`
+- Edit `.config/starship.toml` instead of `~/.config/starship.toml`
 
-After editing, automatically run `chezmoi apply` to apply changes.
+Changes are automatically reflected via symlinks (no apply command needed).

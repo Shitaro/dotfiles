@@ -1,3 +1,9 @@
 .vim/.*
 .vim/bundle/*
-private_dot_config/karabiner/node_modules/
+
+# Generated files
+.config/karabiner/karabiner.json
+.config/karabiner/node_modules/
+
+# OS files
+.DS_Store
