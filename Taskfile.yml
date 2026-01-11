@@ -19,10 +19,10 @@ tasks:
   symlink:
     desc: Create symlinks for all dotfiles
     cmds:
-      # home ディレクトリ
+      # Home directory
       - for: [.zshrc, .zprofile, .zshenv, .zsh_plugins.txt, .gitconfig, .wezterm.lua]
         cmd: ln -sf {{.DOTFILES_DIR}}/home/{{.ITEM}} {{.HOME_DIR}}/{{.ITEM}}
-      # .config ディレクトリ（ファイル単位）
+      # .config directory
       - mkdir -p {{.CONFIG_DIR}}/aerospace {{.CONFIG_DIR}}/atuin {{.CONFIG_DIR}}/sketchybar/plugins
       - ln -sf {{.DOTFILES_DIR}}/.config/aerospace/aerospace.toml {{.CONFIG_DIR}}/aerospace/aerospace.toml
       - ln -sf {{.DOTFILES_DIR}}/.config/atuin/config.toml {{.CONFIG_DIR}}/atuin/config.toml
