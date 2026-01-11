@@ -4,7 +4,6 @@
 # Karabiner (auto-generated files)
 .config/karabiner/assets/complex_modifications/
 .config/karabiner/automatic_backups/
-.config/karabiner/node_modules/
 
 # OS files
 .DS_Store
