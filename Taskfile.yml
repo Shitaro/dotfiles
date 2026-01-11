@@ -31,12 +31,7 @@ tasks:
       - ln -sf {{.DOTFILES_DIR}}/.config/sketchybar/plugins/clock.sh {{.CONFIG_DIR}}/sketchybar/plugins/clock.sh
       - ln -sf {{.DOTFILES_DIR}}/.config/sketchybar/plugins/front_app.sh {{.CONFIG_DIR}}/sketchybar/plugins/front_app.sh
       - ln -sf {{.DOTFILES_DIR}}/.config/starship.toml {{.CONFIG_DIR}}/starship.toml
-      - |
-        if [ ! -L {{.CONFIG_DIR}}/karabiner ]; then
-          echo "Warning: ~/.config/karabiner is not a symlink. Run initial setup first."
-        elif [ "$(readlink {{.CONFIG_DIR}}/karabiner)" != "{{.DOTFILES_DIR}}/.config/karabiner" ]; then
-          echo "Warning: ~/.config/karabiner points to wrong location: $(readlink {{.CONFIG_DIR}}/karabiner)"
-        fi
+      - rm -rf {{.CONFIG_DIR}}/karabiner && ln -sf {{.DOTFILES_DIR}}/.config/karabiner {{.CONFIG_DIR}}/karabiner
 
   brew:
     desc: Install Homebrew packages
