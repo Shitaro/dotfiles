@@ -23,7 +23,7 @@ tasks:
       - for: [.zshrc, .zprofile, .zshenv, .zsh_plugins.txt, .gitconfig, .wezterm.lua]
         cmd: ln -sf {{.DOTFILES_DIR}}/home/{{.ITEM}} {{.HOME_DIR}}/{{.ITEM}}
       # .config ディレクトリ（ファイル単位）
-      - mkdir -p {{.CONFIG_DIR}}/aerospace {{.CONFIG_DIR}}/atuin {{.CONFIG_DIR}}/sketchybar/plugins {{.CONFIG_DIR}}/karabiner
+      - mkdir -p {{.CONFIG_DIR}}/aerospace {{.CONFIG_DIR}}/atuin {{.CONFIG_DIR}}/sketchybar/plugins
       - ln -sf {{.DOTFILES_DIR}}/.config/aerospace/aerospace.toml {{.CONFIG_DIR}}/aerospace/aerospace.toml
       - ln -sf {{.DOTFILES_DIR}}/.config/atuin/config.toml {{.CONFIG_DIR}}/atuin/config.toml
       - ln -sf {{.DOTFILES_DIR}}/.config/sketchybar/sketchybarrc {{.CONFIG_DIR}}/sketchybar/sketchybarrc
@@ -31,16 +31,7 @@ tasks:
       - ln -sf {{.DOTFILES_DIR}}/.config/sketchybar/plugins/clock.sh {{.CONFIG_DIR}}/sketchybar/plugins/clock.sh
       - ln -sf {{.DOTFILES_DIR}}/.config/sketchybar/plugins/front_app.sh {{.CONFIG_DIR}}/sketchybar/plugins/front_app.sh
       - ln -sf {{.DOTFILES_DIR}}/.config/starship.toml {{.CONFIG_DIR}}/starship.toml
-      - for: [karabiner.ts, karabiner.rules.json, karabiner.base.json, package.json, bun.lock]
-        cmd: ln -sf {{.DOTFILES_DIR}}/.config/karabiner/{{.ITEM}} {{.CONFIG_DIR}}/karabiner/{{.ITEM}}
-
-  karabiner:
-    desc: Generate karabiner.json from TypeScript
-    dir: '{{.CONFIG_DIR}}/karabiner'
-    cmds:
-      - test -f karabiner.json || cp {{.DOTFILES_DIR}}/.config/karabiner/karabiner.base.json karabiner.json
-      - bun install
-      - bun run karabiner.ts
+      - test -L {{.CONFIG_DIR}}/karabiner || echo "Warning: ~/.config/karabiner is not a symlink. Run initial setup first."
 
   brew:
     desc: Install Homebrew packages

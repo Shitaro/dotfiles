@@ -7,7 +7,6 @@ This repository contains my personal configuration files managed with Task (go-t
 - macOS (tested on Apple Silicon)
 - Homebrew
 - Task v3+
-- bun (for karabiner.ts generation)
 
 ## What's Included
 
@@ -20,7 +19,7 @@ This repository contains my personal configuration files managed with Task (go-t
 | Starship | `.config/starship.toml` | Shell prompt |
 | AeroSpace | `.config/aerospace/aerospace.toml` | Tiling window manager |
 | SketchyBar | `.config/sketchybar/` | Status bar with AeroSpace integration |
-| Karabiner | `.config/karabiner/` | Keyboard remapping (karabiner.ts + rules JSON) |
+| Karabiner | `.config/karabiner/` | Keyboard remapping |
 
 ## Setting Up a New Machine
 
@@ -49,12 +48,6 @@ cd ~/dotfiles
 brew install go-task
 ```
 
-Install bun:
-
-```bash
-curl -fsSL https://bun.com/install | bash
-```
-
 Install required packages:
 
 ```bash
@@ -67,12 +60,6 @@ Create symlinks:
 
 ```bash
 task symlink
-```
-
-Generate `karabiner.json` (requires bun):
-
-```bash
-task karabiner
 ```
 
 ### Configure Git User
@@ -138,16 +125,19 @@ brew services start sketchybar
 
 ### Configure Karabiner-Elements
 
-- `karabiner.json` is generated and not managed directly
-- Source files are in `~/.config/karabiner/`:
-  - `karabiner.rules.json` (existing rules in JSON)
-  - `karabiner.ts` (generator)
-  - `karabiner.base.json` (base profile used to seed `karabiner.json`)
+`karabiner.json` is managed directly in the repository. The entire `.config/karabiner/` directory is symlinked.
 
-To regenerate:
+Initial setup (run once):
 
 ```bash
-task karabiner
+# Move existing config to dotfiles
+mv ~/.config/karabiner ~/dotfiles/.config/karabiner
+
+# Create symlink
+ln -s ~/dotfiles/.config/karabiner ~/.config/karabiner
+
+# Restart Karabiner service
+launchctl kickstart -k gui/$(id -u)/org.pqrs.service.agent.karabiner_console_user_server
 ```
 
 ### Restart Your Shell
@@ -191,5 +181,4 @@ task symlink
 |---------|-------------|
 | `task --list` | Show available tasks |
 | `task symlink` | Create/update all symlinks |
-| `task karabiner` | Generate `karabiner.json` |
 | `task brew` | Install Homebrew packages |
