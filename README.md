@@ -23,44 +23,17 @@ This repository contains my personal configuration files managed with Task (go-t
 
 ## Setting Up a New Machine
 
-### Install Homebrew
-
-```bash
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-```
-
-On Apple Silicon Macs, add Homebrew to your PATH after installation:
-
-```bash
-eval "$(/opt/homebrew/bin/brew shellenv)"
-```
-
-### Clone the Repository
-
 ```bash
 git clone https://github.com/Shitaro/dotfiles.git ~/dotfiles
 cd ~/dotfiles
-```
-
-### Install Task and Dependencies
-
-```bash
-brew install go-task
-```
-
-Install required packages:
-
-```bash
+./install.sh
 task brew
 ```
 
-### Apply Dotfiles
-
-Create symlinks:
-
-```bash
-task symlink
-```
+`install.sh` automatically:
+- Installs Homebrew (if not present)
+- Installs Task (if not present)
+- Creates symlinks for all dotfiles
 
 ### Configure Git User
 
