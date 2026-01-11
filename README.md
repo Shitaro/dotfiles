@@ -90,29 +90,7 @@ SketchyBar is configured to display AeroSpace workspace indicators with the foll
 
 Each workspace also displays an icon indicating which monitor it belongs to (external monitor or built-in display).
 
-To start SketchyBar:
-
-```bash
-brew services start sketchybar
-```
-
-### Configure Karabiner-Elements
-
-`karabiner.json` is managed directly in the repository. The entire `.config/karabiner/` directory is symlinked.
-
-Initial setup (run once):
-
-```bash
-# Verify dotfiles config exists
-test -d ~/dotfiles/.config/karabiner || { echo "Error: config not found"; exit 1; }
-
-# Replace with symlink
-rm -rf ~/.config/karabiner
-ln -s ~/dotfiles/.config/karabiner ~/.config/karabiner
-
-# Restart Karabiner service
-launchctl kickstart -k gui/$(id -u)/org.pqrs.service.agent.karabiner_console_user_server
-```
+SketchyBar starts automatically with AeroSpace (configured via `after-startup-command` in `aerospace.toml`).
 
 ### Restart Your Shell
 
