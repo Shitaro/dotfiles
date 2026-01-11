@@ -1,0 +1,42 @@
+version: '3'
+
+vars:
+  DOTFILES_DIR: '{{.TASKFILE_DIR}}'
+  HOME_DIR: '{{.HOME}}'
+  CONFIG_DIR: '{{.HOME}}/.config'
+
+tasks:
+  default:
+    desc: Show available tasks
+    cmds:
+      - task --list
+
+  install:
+    desc: Create symlinks for all dotfiles
+    cmds:
+      - task: symlink
+
+  symlink:
+    desc: Create symlinks for all dotfiles
+    cmds:
+      # Home directory
+      - for: [.zshrc, .zprofile, .zshenv, .zsh_plugins.txt, .gitconfig, .wezterm.lua]
+        cmd: ln -sf {{.DOTFILES_DIR}}/home/{{.ITEM}} {{.HOME_DIR}}/{{.ITEM}}
+      # .config directory
+      - mkdir -p {{.CONFIG_DIR}}/aerospace {{.CONFIG_DIR}}/atuin {{.CONFIG_DIR}}/sketchybar/plugins
+      - ln -sf {{.DOTFILES_DIR}}/.config/aerospace/aerospace.toml {{.CONFIG_DIR}}/aerospace/aerospace.toml
+      - ln -sf {{.DOTFILES_DIR}}/.config/atuin/config.toml {{.CONFIG_DIR}}/atuin/config.toml
+      - ln -sf {{.DOTFILES_DIR}}/.config/sketchybar/sketchybarrc {{.CONFIG_DIR}}/sketchybar/sketchybarrc
+      - ln -sf {{.DOTFILES_DIR}}/.config/sketchybar/plugins/aerospace.sh {{.CONFIG_DIR}}/sketchybar/plugins/aerospace.sh
+      - ln -sf {{.DOTFILES_DIR}}/.config/sketchybar/plugins/clock.sh {{.CONFIG_DIR}}/sketchybar/plugins/clock.sh
+      - ln -sf {{.DOTFILES_DIR}}/.config/sketchybar/plugins/front_app.sh {{.CONFIG_DIR}}/sketchybar/plugins/front_app.sh
+      - ln -sf {{.DOTFILES_DIR}}/.config/starship.toml {{.CONFIG_DIR}}/starship.toml
+      - rm -rf {{.CONFIG_DIR}}/karabiner && ln -sf {{.DOTFILES_DIR}}/.config/karabiner {{.CONFIG_DIR}}/karabiner
+
+  brew:
+    desc: Install Homebrew packages
+    platforms: [darwin]
+    cmds:
+      - brew install go-task antidote fzf atuin starship sketchybar
+      - brew install --cask wezterm@nightly nikitabobko/tap/aerospace karabiner-elements
+      - brew install --cask font-hack-nerd-font font-jetbrains-mono-nerd-font

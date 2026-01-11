@@ -1,3 +1,9 @@
 .vim/.*
 .vim/bundle/*
-private_dot_config/karabiner/node_modules/
+
+# Karabiner (auto-generated files)
+.config/karabiner/assets/complex_modifications/
+.config/karabiner/automatic_backups/
+
+# OS files
+.DS_Store

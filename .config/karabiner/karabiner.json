@@ -1,0 +1,2602 @@
+{
+  "profiles": [
+    {
+      "complex_modifications": {
+        "rules": [
+          {
+            "description": "Pass through Cmd+Space for input source switching",
+            "manipulators": [
+              {
+                "from": {
+                  "key_code": "spacebar",
+                  "modifiers": {
+                    "mandatory": [
+                      "left_command"
+                    ],
+                    "optional": [
+                      "caps_lock"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "spacebar",
+                    "modifiers": [
+                      "left_command"
+                    ]
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "from": {
+                  "key_code": "spacebar",
+                  "modifiers": {
+                    "mandatory": [
+                      "right_command"
+                    ],
+                    "optional": [
+                      "caps_lock"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "spacebar",
+                    "modifiers": [
+                      "right_command"
+                    ]
+                  }
+                ],
+                "type": "basic"
+              }
+            ]
+          },
+          {
+            "description": "Mimic Mod key with combination",
+            "manipulators": [
+              {
+                "from": {
+                  "key_code": "3",
+                  "modifiers": {
+                    "mandatory": [
+                      "right_command"
+                    ],
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "escape"
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "from": {
+                  "key_code": "j",
+                  "modifiers": {
+                    "mandatory": [
+                      "right_command"
+                    ],
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "delete_or_backspace"
+                  }
+                ],
+                "type": "basic"
+              }
+            ]
+          },
+          {
+            "description": "Change space to left shift (Space and Shift)",
+            "manipulators": [
+              {
+                "from": {
+                  "key_code": "spacebar",
+                  "modifiers": {
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "left_shift"
+                  }
+                ],
+                "to_if_alone": [
+                  {
+                    "key_code": "spacebar"
+                  }
+                ],
+                "type": "basic"
+              }
+            ]
+          },
+          {
+            "description": "Remap keys to use Dvorak-based keyboard layout",
+            "manipulators": [
+              {
+                "description": "Change grave (```) to number sign (`#`)",
+                "from": {
+                  "key_code": "grave_accent_and_tilde",
+                  "modifiers": {
+                    "optional": [
+                      "caps_lock",
+                      "left_command",
+                      "left_control",
+                      "left_option",
+                      "right_command",
+                      "right_control",
+                      "right_option"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "3",
+                    "modifiers": [
+                      "left_shift"
+                    ]
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "description": "Change grave (```) with left shift to vertical bar (`|`)",
+                "from": {
+                  "key_code": "grave_accent_and_tilde",
+                  "modifiers": {
+                    "mandatory": [
+                      "left_shift"
+                    ],
+                    "optional": [
+                      "caps_lock",
+                      "left_command",
+                      "left_control",
+                      "left_option",
+                      "right_command",
+                      "right_control",
+                      "right_option"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "backslash",
+                    "modifiers": [
+                      "left_shift"
+                    ]
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "description": "Change one (`1`) to dollar (`$`)",
+                "from": {
+                  "key_code": "1",
+                  "modifiers": {
+                    "optional": [
+                      "caps_lock",
+                      "left_command",
+                      "left_control",
+                      "left_option",
+                      "right_command",
+                      "right_control",
+                      "right_option"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "4",
+                    "modifiers": [
+                      "left_shift"
+                    ]
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "description": "Change one (`1`) with left_shift to tilde (`~`)",
+                "from": {
+                  "key_code": "1",
+                  "modifiers": {
+                    "mandatory": [
+                      "left_shift"
+                    ],
+                    "optional": [
+                      "caps_lock",
+                      "left_command",
+                      "left_control",
+                      "left_option",
+                      "right_command",
+                      "right_control",
+                      "right_option"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "grave_accent_and_tilde",
+                    "modifiers": [
+                      "left_shift"
+                    ]
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "description": "Change two (`2`) to ampersand (`&`)",
+                "from": {
+                  "key_code": "2",
+                  "modifiers": {
+                    "optional": [
+                      "caps_lock",
+                      "left_command",
+                      "left_control",
+                      "left_option",
+                      "right_command",
+                      "right_control",
+                      "right_option"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "7",
+                    "modifiers": [
+                      "left_shift"
+                    ]
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "description": "Change two (`2`) with left_shift to percent (`%`)",
+                "from": {
+                  "key_code": "2",
+                  "modifiers": {
+                    "mandatory": [
+                      "left_shift"
+                    ],
+                    "optional": [
+                      "caps_lock",
+                      "left_command",
+                      "left_control",
+                      "left_option",
+                      "right_command",
+                      "right_control",
+                      "right_option"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "5",
+                    "modifiers": [
+                      "left_shift"
+                    ]
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "description": "Change three (`3`) to left bracket (`[`)",
+                "from": {
+                  "key_code": "3",
+                  "modifiers": {
+                    "optional": [
+                      "caps_lock",
+                      "left_command",
+                      "left_control",
+                      "left_option",
+                      "right_command",
+                      "right_control",
+                      "right_option"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "open_bracket"
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "description": "Change three (`3`) with left_shift to one (`1`)",
+                "from": {
+                  "key_code": "3",
+                  "modifiers": {
+                    "mandatory": [
+                      "left_shift"
+                    ],
+                    "optional": [
+                      "caps_lock",
+                      "left_command",
+                      "left_control",
+                      "left_option",
+                      "right_command",
+                      "right_control",
+                      "right_option"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "1"
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "description": "Change four (`4`) to left brace (`{`)",
+                "from": {
+                  "key_code": "4",
+                  "modifiers": {
+                    "optional": [
+                      "caps_lock",
+                      "left_command",
+                      "left_control",
+                      "left_option",
+                      "right_command",
+                      "right_control",
+                      "right_option"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "open_bracket",
+                    "modifiers": [
+                      "left_shift"
+                    ]
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "description": "Change four (`4`) with left_shift to two (`2`)",
+                "from": {
+                  "key_code": "4",
+                  "modifiers": {
+                    "mandatory": [
+                      "left_shift"
+                    ],
+                    "optional": [
+                      "caps_lock",
+                      "left_command",
+                      "left_control",
+                      "left_option",
+                      "right_command",
+                      "right_control",
+                      "right_option"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "2"
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "description": "Change five (`5`) to left parenthesis (`(`)",
+                "from": {
+                  "key_code": "5",
+                  "modifiers": {
+                    "optional": [
+                      "caps_lock",
+                      "left_command",
+                      "left_control",
+                      "left_option",
+                      "right_command",
+                      "right_control",
+                      "right_option"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "9",
+                    "modifiers": [
+                      "left_shift"
+                    ]
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "description": "Change (`5`) with left shift to three (`3`)",
+                "from": {
+                  "key_code": "5",
+                  "modifiers": {
+                    "mandatory": [
+                      "left_shift"
+                    ],
+                    "optional": [
+                      "caps_lock",
+                      "left_command",
+                      "left_control",
+                      "left_option",
+                      "right_command",
+                      "right_control",
+                      "right_option"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "3"
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "description": "Change six (`6`) to equal (`=`)",
+                "from": {
+                  "key_code": "6",
+                  "modifiers": {
+                    "optional": [
+                      "caps_lock",
+                      "left_command",
+                      "left_control",
+                      "left_option",
+                      "right_command",
+                      "right_control",
+                      "right_option"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "equal_sign"
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "description": "Change six (`6`) with left shift to four (`4`)",
+                "from": {
+                  "key_code": "6",
+                  "modifiers": {
+                    "mandatory": [
+                      "left_shift"
+                    ],
+                    "optional": [
+                      "caps_lock",
+                      "left_command",
+                      "left_control",
+                      "left_option",
+                      "right_command",
+                      "right_control",
+                      "right_option"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "4"
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "description": "Change seven (`7`) to asterisk (`*`)",
+                "from": {
+                  "key_code": "7",
+                  "modifiers": {
+                    "optional": [
+                      "caps_lock",
+                      "left_command",
+                      "left_control",
+                      "left_option",
+                      "right_command",
+                      "right_control",
+                      "right_option"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "8",
+                    "modifiers": [
+                      "left_shift"
+                    ]
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "description": "Change seven (`7`) with left shift to five (`5`)",
+                "from": {
+                  "key_code": "7",
+                  "modifiers": {
+                    "mandatory": [
+                      "left_shift"
+                    ],
+                    "optional": [
+                      "caps_lock",
+                      "left_command",
+                      "left_control",
+                      "left_option",
+                      "right_command",
+                      "right_control",
+                      "right_option"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "5"
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "description": "Change eight (`8`) to right parenthesis (`)`)",
+                "from": {
+                  "key_code": "8",
+                  "modifiers": {
+                    "optional": [
+                      "caps_lock",
+                      "left_command",
+                      "left_control",
+                      "left_option",
+                      "right_command",
+                      "right_control",
+                      "right_option"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "0",
+                    "modifiers": [
+                      "left_shift"
+                    ]
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "description": "Change eight (`8`) with left shift to six (`6`)",
+                "from": {
+                  "key_code": "8",
+                  "modifiers": {
+                    "mandatory": [
+                      "left_shift"
+                    ],
+                    "optional": [
+                      "caps_lock",
+                      "left_command",
+                      "left_control",
+                      "left_option",
+                      "right_command",
+                      "right_control",
+                      "right_option"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "6"
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "description": "Change nine (`9`) to right brace (`}`)",
+                "from": {
+                  "key_code": "9",
+                  "modifiers": {
+                    "optional": [
+                      "caps_lock",
+                      "left_command",
+                      "left_control",
+                      "left_option",
+                      "right_command",
+                      "right_control",
+                      "right_option"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "close_bracket",
+                    "modifiers": [
+                      "left_shift"
+                    ]
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "description": "Change nine (`9`) with left shift to seven (`7`)",
+                "from": {
+                  "key_code": "9",
+                  "modifiers": {
+                    "mandatory": [
+                      "left_shift"
+                    ],
+                    "optional": [
+                      "caps_lock",
+                      "left_command",
+                      "left_control",
+                      "left_option",
+                      "right_command",
+                      "right_control",
+                      "right_option"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "7"
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "description": "Change zero (`0`) to right bracket (`]`)",
+                "from": {
+                  "key_code": "0",
+                  "modifiers": {
+                    "optional": [
+                      "caps_lock",
+                      "left_command",
+                      "left_control",
+                      "left_option",
+                      "right_command",
+                      "right_control",
+                      "right_option"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "close_bracket"
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "description": "Change zero (`0`) with left shift to eight (`8`)",
+                "from": {
+                  "key_code": "0",
+                  "modifiers": {
+                    "mandatory": [
+                      "left_shift"
+                    ],
+                    "optional": [
+                      "caps_lock",
+                      "left_command",
+                      "left_control",
+                      "left_option",
+                      "right_command",
+                      "right_control",
+                      "right_option"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "8"
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "description": "Change hyphen (`-`) to plus (`+`)",
+                "from": {
+                  "key_code": "hyphen",
+                  "modifiers": {
+                    "optional": [
+                      "caps_lock",
+                      "left_command",
+                      "left_control",
+                      "left_option",
+                      "right_command",
+                      "right_control",
+                      "right_option"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "equal_sign",
+                    "modifiers": [
+                      "left_shift"
+                    ]
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "description": "Change hyphen (`-`) with left shift to nine (`9`)",
+                "from": {
+                  "key_code": "hyphen",
+                  "modifiers": {
+                    "mandatory": [
+                      "left_shift"
+                    ],
+                    "optional": [
+                      "caps_lock",
+                      "left_command",
+                      "left_control",
+                      "left_option",
+                      "right_command",
+                      "right_control",
+                      "right_option"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "9"
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "from": {
+                  "description": "Change equal (`=`) to exclamation (`!`)",
+                  "key_code": "equal_sign",
+                  "modifiers": {
+                    "optional": [
+                      "caps_lock",
+                      "left_command",
+                      "left_control",
+                      "left_option",
+                      "right_command",
+                      "right_control",
+                      "right_option"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "1",
+                    "modifiers": [
+                      "left_shift"
+                    ]
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "from": {
+                  "description": "Change equal (`=`) with left shift to zero (`0`)",
+                  "key_code": "equal_sign",
+                  "modifiers": {
+                    "mandatory": [
+                      "left_shift"
+                    ],
+                    "optional": [
+                      "caps_lock",
+                      "left_command",
+                      "left_control",
+                      "left_option",
+                      "right_command",
+                      "right_control",
+                      "right_option"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "0"
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "description": "Change q to semicolon (`;`)",
+                "from": {
+                  "key_code": "q",
+                  "modifiers": {
+                    "optional": [
+                      "caps_lock",
+                      "left_command",
+                      "left_control",
+                      "left_option",
+                      "right_command",
+                      "right_control",
+                      "right_option"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "semicolon"
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "description": "Change q with left shift to colon (`:`)",
+                "from": {
+                  "key_code": "q",
+                  "modifiers": {
+                    "mandatory": [
+                      "left_shift"
+                    ],
+                    "optional": [
+                      "caps_lock",
+                      "left_command",
+                      "left_control",
+                      "left_option",
+                      "right_command",
+                      "right_control",
+                      "right_option"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "semicolon",
+                    "modifiers": [
+                      "left_shift"
+                    ]
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "description": "Change w to comma (`,`)",
+                "from": {
+                  "key_code": "w",
+                  "modifiers": {
+                    "optional": [
+                      "caps_lock",
+                      "left_command",
+                      "left_control",
+                      "left_option",
+                      "right_command",
+                      "right_control",
+                      "right_option"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "comma"
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "description": "Change w with left shift to less (`<`)",
+                "from": {
+                  "key_code": "w",
+                  "modifiers": {
+                    "mandatory": [
+                      "left_shift"
+                    ],
+                    "optional": [
+                      "caps_lock",
+                      "left_command",
+                      "left_control",
+                      "left_option",
+                      "right_command",
+                      "right_control",
+                      "right_option"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "comma",
+                    "modifiers": [
+                      "left_shift"
+                    ]
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "description": "Change e to period (`.`)",
+                "from": {
+                  "key_code": "e",
+                  "modifiers": {
+                    "optional": [
+                      "caps_lock",
+                      "left_command",
+                      "left_control",
+                      "left_option",
+                      "right_command",
+                      "right_control",
+                      "right_option"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "period"
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "description": "Change e with left shift to greater (`>`)",
+                "from": {
+                  "key_code": "e",
+                  "modifiers": {
+                    "mandatory": [
+                      "left_shift"
+                    ],
+                    "optional": [
+                      "caps_lock",
+                      "left_command",
+                      "left_control",
+                      "left_option",
+                      "right_command",
+                      "right_control",
+                      "right_option"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "period",
+                    "modifiers": [
+                      "left_shift"
+                    ]
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "description": "Change r to p",
+                "from": {
+                  "key_code": "r",
+                  "modifiers": {
+                    "optional": [
+                      "caps_lock",
+                      "left_command",
+                      "left_control",
+                      "left_option",
+                      "right_command",
+                      "right_control",
+                      "right_option"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "p"
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "description": "Change r with left shift to P",
+                "from": {
+                  "key_code": "r",
+                  "modifiers": {
+                    "mandatory": [
+                      "left_shift"
+                    ],
+                    "optional": [
+                      "caps_lock",
+                      "left_command",
+                      "left_control",
+                      "left_option",
+                      "right_command",
+                      "right_control",
+                      "right_option"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "p",
+                    "modifiers": [
+                      "left_shift"
+                    ]
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "description": "Change t to y",
+                "from": {
+                  "key_code": "t",
+                  "modifiers": {
+                    "optional": [
+                      "caps_lock",
+                      "left_command",
+                      "left_control",
+                      "left_option",
+                      "right_command",
+                      "right_control",
+                      "right_option"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "y"
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "description": "Change t with left shift to Y",
+                "from": {
+                  "key_code": "t",
+                  "modifiers": {
+                    "mandatory": [
+                      "left_shift"
+                    ],
+                    "optional": [
+                      "caps_lock",
+                      "left_command",
+                      "left_control",
+                      "left_option",
+                      "right_command",
+                      "right_control",
+                      "right_option"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "y",
+                    "modifiers": [
+                      "left_shift"
+                    ]
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "description": "Change y to f",
+                "from": {
+                  "key_code": "y",
+                  "modifiers": {
+                    "optional": [
+                      "caps_lock",
+                      "left_command",
+                      "left_control",
+                      "left_option",
+                      "right_command",
+                      "right_control",
+                      "right_option"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "f"
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "description": "Change y with left shift to F",
+                "from": {
+                  "key_code": "y",
+                  "modifiers": {
+                    "mandatory": [
+                      "left_shift"
+                    ],
+                    "optional": [
+                      "caps_lock",
+                      "left_command",
+                      "left_control",
+                      "left_option",
+                      "right_command",
+                      "right_control",
+                      "right_option"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "f",
+                    "modifiers": [
+                      "left_shift"
+                    ]
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "description": "Change u to g",
+                "from": {
+                  "key_code": "u",
+                  "modifiers": {
+                    "optional": [
+                      "caps_lock",
+                      "left_command",
+                      "left_control",
+                      "left_option",
+                      "right_command",
+                      "right_control",
+                      "right_option"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "g"
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "description": "Change u with left shift to G",
+                "from": {
+                  "key_code": "u",
+                  "modifiers": {
+                    "mandatory": [
+                      "left_shift"
+                    ],
+                    "optional": [
+                      "caps_lock",
+                      "left_command",
+                      "left_control",
+                      "left_option",
+                      "right_command",
+                      "right_control",
+                      "right_option"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "g",
+                    "modifiers": [
+                      "left_shift"
+                    ]
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "description": "Change i to c",
+                "from": {
+                  "key_code": "i",
+                  "modifiers": {
+                    "optional": [
+                      "caps_lock",
+                      "left_command",
+                      "left_control",
+                      "left_option",
+                      "right_command",
+                      "right_control",
+                      "right_option"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "c"
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "description": "Change i with left shift to C",
+                "from": {
+                  "key_code": "i",
+                  "modifiers": {
+                    "mandatory": [
+                      "left_shift"
+                    ],
+                    "optional": [
+                      "caps_lock",
+                      "left_command",
+                      "left_control",
+                      "left_option",
+                      "right_command",
+                      "right_control",
+                      "right_option"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "c",
+                    "modifiers": [
+                      "left_shift"
+                    ]
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "description": "Change o to r",
+                "from": {
+                  "key_code": "o",
+                  "modifiers": {
+                    "optional": [
+                      "caps_lock",
+                      "left_command",
+                      "left_control",
+                      "left_option",
+                      "right_command",
+                      "right_control",
+                      "right_option"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "r"
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "description": "Change o with left shift to R",
+                "from": {
+                  "key_code": "o",
+                  "modifiers": {
+                    "mandatory": [
+                      "left_shift"
+                    ],
+                    "optional": [
+                      "caps_lock",
+                      "left_command",
+                      "left_control",
+                      "left_option",
+                      "right_command",
+                      "right_control",
+                      "right_option"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "r",
+                    "modifiers": [
+                      "left_shift"
+                    ]
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "description": "Change p to l",
+                "from": {
+                  "key_code": "p",
+                  "modifiers": {
+                    "optional": [
+                      "caps_lock",
+                      "left_command",
+                      "left_control",
+                      "left_option",
+                      "right_command",
+                      "right_control",
+                      "right_option"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "l"
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "description": "Change p with left shift to L",
+                "from": {
+                  "key_code": "p",
+                  "modifiers": {
+                    "mandatory": [
+                      "left_shift"
+                    ],
+                    "optional": [
+                      "caps_lock",
+                      "left_command",
+                      "left_control",
+                      "left_option",
+                      "right_command",
+                      "right_control",
+                      "right_option"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "l",
+                    "modifiers": [
+                      "left_shift"
+                    ]
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "description": "Change left bracket (`[`) to slash (`/`)",
+                "from": {
+                  "key_code": "open_bracket",
+                  "modifiers": {
+                    "optional": [
+                      "caps_lock",
+                      "left_command",
+                      "left_control",
+                      "left_option",
+                      "right_command",
+                      "right_control",
+                      "right_option"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "slash"
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "description": "Change left bracket (`/`) with left shift to question (`?`)",
+                "from": {
+                  "key_code": "open_bracket",
+                  "modifiers": {
+                    "mandatory": [
+                      "left_shift"
+                    ],
+                    "optional": [
+                      "caps_lock",
+                      "left_command",
+                      "left_control",
+                      "left_option",
+                      "right_command",
+                      "right_control",
+                      "right_option"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "slash",
+                    "modifiers": [
+                      "left_shift"
+                    ]
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "description": "Change right bracket (`]`) to at (`@`)",
+                "from": {
+                  "key_code": "close_bracket",
+                  "modifiers": {
+                    "optional": [
+                      "caps_lock",
+                      "left_command",
+                      "left_control",
+                      "left_option",
+                      "right_command",
+                      "right_control",
+                      "right_option"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "2",
+                    "modifiers": [
+                      "left_shift"
+                    ]
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "description": "Change right bracket (`]`) with left shift to circum (`^`)",
+                "from": {
+                  "key_code": "close_bracket",
+                  "modifiers": {
+                    "mandatory": [
+                      "left_shift"
+                    ],
+                    "optional": [
+                      "caps_lock",
+                      "left_command",
+                      "left_control",
+                      "left_option",
+                      "right_command",
+                      "right_control",
+                      "right_option"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "6",
+                    "modifiers": [
+                      "left_shift"
+                    ]
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "description": "Change backslash (`\\`) to backslash (`\\`)",
+                "from": {
+                  "key_code": "backslash",
+                  "modifiers": {
+                    "optional": [
+                      "caps_lock",
+                      "left_command",
+                      "left_control",
+                      "left_option",
+                      "right_command",
+                      "right_control",
+                      "right_option"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "backslash"
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "description": "Change backslash (`\\`) with left shift to grave (```)",
+                "from": {
+                  "key_code": "backslash",
+                  "modifiers": {
+                    "mandatory": [
+                      "left_shift"
+                    ],
+                    "optional": [
+                      "caps_lock",
+                      "left_command",
+                      "left_control",
+                      "left_option",
+                      "right_command",
+                      "right_control",
+                      "right_option"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "grave_accent_and_tilde"
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "description": "Change a to a",
+                "from": {
+                  "key_code": "a",
+                  "modifiers": {
+                    "optional": [
+                      "caps_lock",
+                      "left_command",
+                      "left_control",
+                      "left_option",
+                      "right_command",
+                      "right_control",
+                      "right_option"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "a"
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "description": "Change a with left shift to A",
+                "from": {
+                  "key_code": "a",
+                  "modifiers": {
+                    "mandatory": [
+                      "left_shift"
+                    ],
+                    "optional": [
+                      "caps_lock",
+                      "left_command",
+                      "left_control",
+                      "left_option",
+                      "right_command",
+                      "right_control",
+                      "right_option"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "a",
+                    "modifiers": [
+                      "left_shift"
+                    ]
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "description": "Change s to o",
+                "from": {
+                  "key_code": "s",
+                  "modifiers": {
+                    "optional": [
+                      "caps_lock",
+                      "left_command",
+                      "left_control",
+                      "left_option",
+                      "right_command",
+                      "right_control",
+                      "right_option"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "o"
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "description": "Change s with left shift to O",
+                "from": {
+                  "key_code": "s",
+                  "modifiers": {
+                    "mandatory": [
+                      "left_shift"
+                    ],
+                    "optional": [
+                      "caps_lock",
+                      "left_command",
+                      "left_control",
+                      "left_option",
+                      "right_command",
+                      "right_control",
+                      "right_option"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "o",
+                    "modifiers": [
+                      "left_shift"
+                    ]
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "description": "Change d to e",
+                "from": {
+                  "key_code": "d",
+                  "modifiers": {
+                    "optional": [
+                      "caps_lock",
+                      "left_command",
+                      "left_control",
+                      "left_option",
+                      "right_command",
+                      "right_control",
+                      "right_option"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "e"
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "description": "Change d with left shift to E",
+                "from": {
+                  "key_code": "d",
+                  "modifiers": {
+                    "mandatory": [
+                      "left_shift"
+                    ],
+                    "optional": [
+                      "caps_lock",
+                      "left_command",
+                      "left_control",
+                      "left_option",
+                      "right_command",
+                      "right_control",
+                      "right_option"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "e",
+                    "modifiers": [
+                      "left_shift"
+                    ]
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "description": "Change f to u",
+                "from": {
+                  "key_code": "f",
+                  "modifiers": {
+                    "optional": [
+                      "caps_lock",
+                      "left_command",
+                      "left_control",
+                      "left_option",
+                      "right_command",
+                      "right_control",
+                      "right_option"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "u"
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "description": "Change f with left shift to U",
+                "from": {
+                  "key_code": "f",
+                  "modifiers": {
+                    "mandatory": [
+                      "left_shift"
+                    ],
+                    "optional": [
+                      "caps_lock",
+                      "left_command",
+                      "left_control",
+                      "left_option",
+                      "right_command",
+                      "right_control",
+                      "right_option"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "u",
+                    "modifiers": [
+                      "left_shift"
+                    ]
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "description": "Change g to i",
+                "from": {
+                  "key_code": "g",
+                  "modifiers": {
+                    "optional": [
+                      "caps_lock",
+                      "left_command",
+                      "left_control",
+                      "left_option",
+                      "right_command",
+                      "right_control",
+                      "right_option"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "i"
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "description": "Change g with left shift to I",
+                "from": {
+                  "key_code": "g",
+                  "modifiers": {
+                    "mandatory": [
+                      "left_shift"
+                    ],
+                    "optional": [
+                      "caps_lock",
+                      "left_command",
+                      "left_control",
+                      "left_option",
+                      "right_command",
+                      "right_control",
+                      "right_option"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "i",
+                    "modifiers": [
+                      "left_shift"
+                    ]
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "description": "Change h to d",
+                "from": {
+                  "key_code": "h",
+                  "modifiers": {
+                    "optional": [
+                      "caps_lock",
+                      "left_command",
+                      "left_control",
+                      "left_option",
+                      "right_command",
+                      "right_control",
+                      "right_option"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "d"
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "description": "Change h with left shift to D",
+                "from": {
+                  "key_code": "h",
+                  "modifiers": {
+                    "mandatory": [
+                      "left_shift"
+                    ],
+                    "optional": [
+                      "caps_lock",
+                      "left_command",
+                      "left_control",
+                      "left_option",
+                      "right_command",
+                      "right_control",
+                      "right_option"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "d",
+                    "modifiers": [
+                      "left_shift"
+                    ]
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "description": "Change j to h",
+                "from": {
+                  "key_code": "j",
+                  "modifiers": {
+                    "optional": [
+                      "caps_lock",
+                      "left_command",
+                      "left_control",
+                      "left_option",
+                      "right_command",
+                      "right_control",
+                      "right_option"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "h"
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "description": "Change j with left shift to H",
+                "from": {
+                  "key_code": "j",
+                  "modifiers": {
+                    "mandatory": [
+                      "left_shift"
+                    ],
+                    "optional": [
+                      "caps_lock",
+                      "left_command",
+                      "left_control",
+                      "left_option",
+                      "right_command",
+                      "right_control",
+                      "right_option"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "h",
+                    "modifiers": [
+                      "left_shift"
+                    ]
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "description": "Change k to t",
+                "from": {
+                  "key_code": "k",
+                  "modifiers": {
+                    "optional": [
+                      "caps_lock",
+                      "left_command",
+                      "left_control",
+                      "left_option",
+                      "right_command",
+                      "right_control",
+                      "right_option"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "t"
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "description": "Change k with left shift to t",
+                "from": {
+                  "key_code": "k",
+                  "modifiers": {
+                    "mandatory": [
+                      "left_shift"
+                    ],
+                    "optional": [
+                      "caps_lock",
+                      "left_command",
+                      "left_control",
+                      "left_option",
+                      "right_command",
+                      "right_control",
+                      "right_option"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "t",
+                    "modifiers": [
+                      "left_shift"
+                    ]
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "description": "Change l to n",
+                "from": {
+                  "key_code": "l",
+                  "modifiers": {
+                    "optional": [
+                      "caps_lock",
+                      "left_command",
+                      "left_control",
+                      "left_option",
+                      "right_command",
+                      "right_control",
+                      "right_option"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "n"
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "description": "Change l with left shift to N",
+                "from": {
+                  "key_code": "l",
+                  "modifiers": {
+                    "mandatory": [
+                      "left_shift"
+                    ],
+                    "optional": [
+                      "caps_lock",
+                      "left_command",
+                      "left_control",
+                      "left_option",
+                      "right_command",
+                      "right_control",
+                      "right_option"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "n",
+                    "modifiers": [
+                      "left_shift"
+                    ]
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "description": "Change semicolon (`;`) to s",
+                "from": {
+                  "key_code": "semicolon",
+                  "modifiers": {
+                    "optional": [
+                      "caps_lock",
+                      "left_command",
+                      "left_control",
+                      "left_option",
+                      "right_command",
+                      "right_control",
+                      "right_option"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "s"
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "description": "Change semicolon (`;`) with left shift to S",
+                "from": {
+                  "key_code": "semicolon",
+                  "modifiers": {
+                    "mandatory": [
+                      "left_shift"
+                    ],
+                    "optional": [
+                      "caps_lock",
+                      "left_command",
+                      "left_control",
+                      "left_option",
+                      "right_command",
+                      "right_control",
+                      "right_option"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "s",
+                    "modifiers": [
+                      "left_shift"
+                    ]
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "description": "Change quote (`'`) to hyphen (`-`)",
+                "from": {
+                  "key_code": "quote",
+                  "modifiers": {
+                    "optional": [
+                      "caps_lock",
+                      "left_command",
+                      "left_control",
+                      "left_option",
+                      "right_command",
+                      "right_control",
+                      "right_option"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "hyphen"
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "description": "Change quote (`'`) with left shift to under score (`_`)",
+                "from": {
+                  "key_code": "quote",
+                  "modifiers": {
+                    "mandatory": [
+                      "left_shift"
+                    ],
+                    "optional": [
+                      "caps_lock",
+                      "left_command",
+                      "left_control",
+                      "left_option",
+                      "right_command",
+                      "right_control",
+                      "right_option"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "hyphen",
+                    "modifiers": [
+                      "left_shift"
+                    ]
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "description": "Change z to quote (`'`)",
+                "from": {
+                  "key_code": "z",
+                  "modifiers": {
+                    "optional": [
+                      "caps_lock",
+                      "left_command",
+                      "left_control",
+                      "left_option",
+                      "right_command",
+                      "right_control",
+                      "right_option"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "quote"
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "description": "Change z with left shift to double quote (`\"`)",
+                "from": {
+                  "key_code": "z",
+                  "modifiers": {
+                    "mandatory": [
+                      "left_shift"
+                    ],
+                    "optional": [
+                      "caps_lock",
+                      "left_command",
+                      "left_control",
+                      "left_option",
+                      "right_command",
+                      "right_control",
+                      "right_option"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "quote",
+                    "modifiers": [
+                      "left_shift"
+                    ]
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "description": "Change x to q",
+                "from": {
+                  "key_code": "x",
+                  "modifiers": {
+                    "optional": [
+                      "caps_lock",
+                      "left_command",
+                      "left_control",
+                      "left_option",
+                      "right_command",
+                      "right_control",
+                      "right_option"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "q"
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "description": "Change x with left shift to Q",
+                "from": {
+                  "key_code": "x",
+                  "modifiers": {
+                    "mandatory": [
+                      "left_shift"
+                    ],
+                    "optional": [
+                      "caps_lock",
+                      "left_command",
+                      "left_control",
+                      "left_option",
+                      "right_command",
+                      "right_control",
+                      "right_option"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "q",
+                    "modifiers": [
+                      "left_shift"
+                    ]
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "description": "Change c to j",
+                "from": {
+                  "key_code": "c",
+                  "modifiers": {
+                    "optional": [
+                      "caps_lock",
+                      "left_command",
+                      "left_control",
+                      "left_option",
+                      "right_command",
+                      "right_control",
+                      "right_option"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "j"
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "description": "Change c with left shift to J",
+                "from": {
+                  "key_code": "c",
+                  "modifiers": {
+                    "mandatory": [
+                      "left_shift"
+                    ],
+                    "optional": [
+                      "caps_lock",
+                      "left_command",
+                      "left_control",
+                      "left_option",
+                      "right_command",
+                      "right_control",
+                      "right_option"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "j",
+                    "modifiers": [
+                      "left_shift"
+                    ]
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "description": "Change v to k",
+                "from": {
+                  "key_code": "v",
+                  "modifiers": {
+                    "optional": [
+                      "caps_lock",
+                      "left_command",
+                      "left_control",
+                      "left_option",
+                      "right_command",
+                      "right_control",
+                      "right_option"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "k"
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "description": "Change v with left shift to K",
+                "from": {
+                  "key_code": "v",
+                  "modifiers": {
+                    "mandatory": [
+                      "left_shift"
+                    ],
+                    "optional": [
+                      "caps_lock",
+                      "left_command",
+                      "left_control",
+                      "left_option",
+                      "right_command",
+                      "right_control",
+                      "right_option"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "k",
+                    "modifiers": [
+                      "left_shift"
+                    ]
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "description": "Change b to x",
+                "from": {
+                  "key_code": "b",
+                  "modifiers": {
+                    "optional": [
+                      "caps_lock",
+                      "left_command",
+                      "left_control",
+                      "left_option",
+                      "right_command",
+                      "right_control",
+                      "right_option"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "x"
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "description": "Change b with left shift to X",
+                "from": {
+                  "key_code": "b",
+                  "modifiers": {
+                    "mandatory": [
+                      "left_shift"
+                    ],
+                    "optional": [
+                      "caps_lock",
+                      "left_command",
+                      "left_control",
+                      "left_option",
+                      "right_command",
+                      "right_control",
+                      "right_option"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "x",
+                    "modifiers": [
+                      "left_shift"
+                    ]
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "description": "Change n to b",
+                "from": {
+                  "key_code": "n",
+                  "modifiers": {
+                    "optional": [
+                      "caps_lock",
+                      "left_command",
+                      "left_control",
+                      "left_option",
+                      "right_command",
+                      "right_control",
+                      "right_option"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "b"
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "description": "Change n with left shift to B",
+                "from": {
+                  "key_code": "n",
+                  "modifiers": {
+                    "mandatory": [
+                      "left_shift"
+                    ],
+                    "optional": [
+                      "caps_lock",
+                      "left_command",
+                      "left_control",
+                      "left_option",
+                      "right_command",
+                      "right_control",
+                      "right_option"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "b",
+                    "modifiers": [
+                      "left_shift"
+                    ]
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "description": "Change m to m",
+                "from": {
+                  "key_code": "m",
+                  "modifiers": {
+                    "optional": [
+                      "caps_lock",
+                      "left_command",
+                      "left_control",
+                      "left_option",
+                      "right_command",
+                      "right_control",
+                      "right_option"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "m"
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "description": "Change m with left shift to M",
+                "from": {
+                  "key_code": "m",
+                  "modifiers": {
+                    "mandatory": [
+                      "left_shift"
+                    ],
+                    "optional": [
+                      "caps_lock",
+                      "left_command",
+                      "left_control",
+                      "left_option",
+                      "right_command",
+                      "right_control",
+                      "right_option"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "m",
+                    "modifiers": [
+                      "left_shift"
+                    ]
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "description": "Change comma (`,`) to w",
+                "from": {
+                  "key_code": "comma",
+                  "modifiers": {
+                    "optional": [
+                      "caps_lock",
+                      "left_command",
+                      "left_control",
+                      "left_option",
+                      "right_command",
+                      "right_control",
+                      "right_option"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "w"
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "description": "Change comma (`,`) with left shift to W",
+                "from": {
+                  "key_code": "comma",
+                  "modifiers": {
+                    "mandatory": [
+                      "left_shift"
+                    ],
+                    "optional": [
+                      "caps_lock",
+                      "left_command",
+                      "left_control",
+                      "left_option",
+                      "right_command",
+                      "right_control",
+                      "right_option"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "w",
+                    "modifiers": [
+                      "left_shift"
+                    ]
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "description": "Change period (`.`) to v",
+                "from": {
+                  "key_code": "period",
+                  "modifiers": {
+                    "optional": [
+                      "caps_lock",
+                      "left_command",
+                      "left_control",
+                      "left_option",
+                      "right_command",
+                      "right_control",
+                      "right_option"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "v"
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "description": "Change period (`.`) with left shift to V",
+                "from": {
+                  "key_code": "period",
+                  "modifiers": {
+                    "mandatory": [
+                      "left_shift"
+                    ],
+                    "optional": [
+                      "caps_lock",
+                      "left_command",
+                      "left_control",
+                      "left_option",
+                      "right_command",
+                      "right_control",
+                      "right_option"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "v",
+                    "modifiers": [
+                      "left_shift"
+                    ]
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "description": "Change slash (`/`) to z",
+                "from": {
+                  "key_code": "slash",
+                  "modifiers": {
+                    "optional": [
+                      "caps_lock",
+                      "left_command",
+                      "left_control",
+                      "left_option",
+                      "right_command",
+                      "right_control",
+                      "right_option"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "z"
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "description": "Change slash (`/`) with left shift to Z",
+                "from": {
+                  "key_code": "slash",
+                  "modifiers": {
+                    "mandatory": [
+                      "left_shift"
+                    ],
+                    "optional": [
+                      "caps_lock",
+                      "left_command",
+                      "left_control",
+                      "left_option",
+                      "right_command",
+                      "right_control",
+                      "right_option"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "z",
+                    "modifiers": [
+                      "left_shift"
+                    ]
+                  }
+                ],
+                "type": "basic"
+              }
+            ]
+          }
+        ],
+        "parameters": {
+          "basic.to_if_alone_timeout_milliseconds": 1000,
+          "basic.to_if_held_down_threshold_milliseconds": 500,
+          "basic.to_delayed_action_delay_milliseconds": 500,
+          "basic.simultaneous_threshold_milliseconds": 50,
+          "mouse_motion_to_scroll.speed": 100
+        }
+      },
+      "name": "Default profile",
+      "selected": true,
+      "simple_modifications": [
+        {
+          "from": {
+            "key_code": "caps_lock"
+          },
+          "to": [
+            {
+              "key_code": "escape"
+            }
+          ]
+        }
+      ],
+      "virtual_hid_keyboard": {
+        "country_code": 0,
+        "keyboard_type_v2": "ansi"
+      }
+    }
+  ]
+}

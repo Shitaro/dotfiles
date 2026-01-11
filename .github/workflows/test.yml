@@ -1,0 +1,55 @@
+name: Test
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run install.sh
+        run: ./install.sh
+
+      - name: Verify symlinks (home directory)
+        run: |
+          for file in .zshrc .zprofile .zshenv .zsh_plugins.txt .gitconfig .wezterm.lua; do
+            if [ -L "$HOME/$file" ]; then
+              echo "OK: $HOME/$file"
+            else
+              echo "FAIL: $HOME/$file is not a symlink"
+              exit 1
+            fi
+          done
+
+      - name: Verify symlinks (.config directory)
+        run: |
+          files=(
+            "aerospace/aerospace.toml"
+            "atuin/config.toml"
+            "sketchybar/sketchybarrc"
+            "sketchybar/plugins/aerospace.sh"
+            "sketchybar/plugins/clock.sh"
+            "sketchybar/plugins/front_app.sh"
+            "starship.toml"
+          )
+          for file in "${files[@]}"; do
+            if [ -L "$HOME/.config/$file" ]; then
+              echo "OK: $HOME/.config/$file"
+            else
+              echo "FAIL: $HOME/.config/$file is not a symlink"
+              exit 1
+            fi
+          done
+
+          # karabiner is a directory symlink
+          if [ -L "$HOME/.config/karabiner" ]; then
+            echo "OK: $HOME/.config/karabiner"
+          else
+            echo "FAIL: $HOME/.config/karabiner is not a symlink"
+            exit 1
+          fi

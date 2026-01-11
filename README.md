@@ -1,13 +1,12 @@
 # dotfiles
 
-This repository contains my personal configuration files managed with [chezmoi](https://www.chezmoi.io/).
+This repository contains my personal configuration files managed with Task (go-task) using symlinks.
 
 ## Requirements
 
 - macOS (tested on Apple Silicon)
 - Homebrew
-- Karabiner-Elements
-- bun
+- Task v3+
 
 ## What's Included
 
@@ -20,67 +19,21 @@ This repository contains my personal configuration files managed with [chezmoi](
 | Starship | `.config/starship.toml` | Shell prompt |
 | AeroSpace | `.config/aerospace/aerospace.toml` | Tiling window manager |
 | SketchyBar | `.config/sketchybar/` | Status bar with AeroSpace integration |
-| Karabiner | `.config/karabiner/` | Keyboard remapping (karabiner.ts + rules JSON) |
+| Karabiner | `.config/karabiner/` | Keyboard remapping |
 
 ## Setting Up a New Machine
 
-To set up a new machine with these dotfiles, follow the steps below.
-
-### Install Homebrew
-
-First, install Homebrew if it's not already installed:
-
 ```bash
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+git clone https://github.com/Shitaro/dotfiles.git ~/dotfiles
+cd ~/dotfiles
+./install.sh
+task brew
 ```
 
-On Apple Silicon Macs, add Homebrew to your PATH after installation:
-
-```bash
-eval "$(/opt/homebrew/bin/brew shellenv)"
-```
-
-### Install Dependencies and chezmoi
-
-First, install the required dependencies and chezmoi together:
-
-```bash
-brew install chezmoi antidote fzf atuin starship sketchybar
-brew install bun
-brew install --cask wezterm@nightly nikitabobko/tap/aerospace karabiner-elements
-brew install --cask font-hack-nerd-font font-jetbrains-mono-nerd-font
-```
-
-| Package | Description |
-|---------|-------------|
-| chezmoi | Dotfiles manager |
-| antidote | Zsh plugin manager |
-| fzf | Fuzzy finder |
-| atuin | Enhanced shell history |
-| starship | Shell prompt |
-| sketchybar | Customizable status bar |
-| bun | JS runtime (used for karabiner.ts generation) |
-| wezterm@nightly | Terminal emulator (nightly required for latest config options) |
-| aerospace | i3-like tiling window manager |
-| karabiner-elements | Keyboard remapping utility |
-| font-hack-nerd-font | Terminal and general UI font |
-| font-jetbrains-mono-nerd-font | SketchyBar workspace indicators (includes Nerd Font icons) |
-
-### Apply Dotfiles
-
-Apply the dotfiles with chezmoi:
-
-```bash
-chezmoi init --apply Shitaro/dotfiles
-```
-
-Alternatively, you can use the one-liner (installs chezmoi and applies in a single command):
-
-```bash
-sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply Shitaro/dotfiles
-```
-
-Note: If using the one-liner, make sure to install all dependencies listed above before restarting your shell.
+`install.sh` automatically:
+- Installs Homebrew (if not present)
+- Installs Task (if not present)
+- Creates symlinks for all dotfiles
 
 ### Configure Git User
 
@@ -137,29 +90,9 @@ SketchyBar is configured to display AeroSpace workspace indicators with the foll
 
 Each workspace also displays an icon indicating which monitor it belongs to (external monitor or built-in display).
 
-To start SketchyBar:
-
-```bash
-brew services start sketchybar
-```
-
-### Configure Karabiner-Elements
-
-- `karabiner.json` is generated and not managed directly
-- Source files are in `~/.config/karabiner/`:
-  - `karabiner.rules.json` (existing rules in JSON)
-  - `karabiner.ts` (generator)
-  - `karabiner.base.json` (base profile used to seed `karabiner.json`)
-
-To regenerate:
-
-```bash
-chezmoi apply --source-path .chezmoiscripts/run_onchange_10-karabiner-ts.sh.tmpl
-```
+SketchyBar starts automatically with AeroSpace (configured via `after-startup-command` in `aerospace.toml`).
 
 ### Restart Your Shell
-
-Finally, restart your shell to load the new configuration:
 
 ```bash
 exec zsh
@@ -169,60 +102,35 @@ exec zsh
 
 ### Editing Dotfiles
 
-There are two workflows for editing dotfiles:
+Edit the source files in this repository (`~/dotfiles/`).
+Changes are applied immediately via symlinks.
 
-#### Recommended: Edit source files directly
+Examples:
 
-Edit the source file in `~/.local/share/chezmoi/`, then apply changes to the target:
-
-```bash
-chezmoi edit ~/.wezterm.lua   # Opens the source file in your editor
-chezmoi apply                 # Apply changes to target files
-```
-
-Or navigate to the source directory and edit directly:
-
-```bash
-chezmoi cd                    # Go to ~/.local/share/chezmoi
-vim private_dot_wezterm.lua   # Edit the source file
-chezmoi apply                 # Apply changes to target files
-```
-
-This approach keeps the source of truth in the chezmoi repo and changes are immediately tracked in git.
-
-#### Alternative: Edit target files and sync back
-
-If you edit target files directly (e.g., `~/.wezterm.lua`), sync changes back to chezmoi:
-
-```bash
-chezmoi add ~/.wezterm.lua    # Sync a specific file
-# or
-chezmoi re-add                # Sync all managed files
-```
+- Edit `home/.wezterm.lua` instead of `~/.wezterm.lua`
+- Edit `home/.zshrc` instead of `~/.zshrc`
+- Edit `.config/starship.toml` instead of `~/.config/starship.toml`
 
 ### Committing Changes
 
-After editing, commit and push your changes:
-
 ```bash
-chezmoi cd && git add -A && git commit -m "Update config" && git push
+git add -A
+git commit -m "Update config"
+git push
 ```
 
 ### Pulling Updates
 
-To pull the latest changes from the remote repository and apply them:
-
 ```bash
-chezmoi update
+git pull
+# Re-run symlink task if needed
+task symlink
 ```
 
 ## Useful Commands
 
 | Command | Description |
 |---------|-------------|
-| `chezmoi add <file>` | Add a new file to chezmoi management |
-| `chezmoi edit <file>` | Edit a managed file |
-| `chezmoi diff` | Preview changes before applying |
-| `chezmoi apply` | Apply changes to target files |
-| `chezmoi cd` | Go to the source directory |
-| `chezmoi update` | Pull and apply latest changes from remote |
+| `task --list` | Show available tasks |
+| `task symlink` | Create/update all symlinks |
+| `task brew` | Install Homebrew packages |
