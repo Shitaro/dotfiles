@@ -3,8 +3,8 @@ set -euo pipefail
 
 DOTFILES_DIR="$(cd "$(dirname "$0")" && pwd)"
 
-# Setup Homebrew environment first (Apple Silicon / Intel 両対応)
-# PATH に無くても既存インストールを探す
+# Setup Homebrew environment first (Apple Silicon / Intel)
+# Find existing installation even if not in PATH
 if [ -f /opt/homebrew/bin/brew ]; then
   eval "$(/opt/homebrew/bin/brew shellenv)"
 elif [ -f /usr/local/bin/brew ]; then
@@ -15,7 +15,7 @@ fi
 if ! command -v brew >/dev/null 2>&1; then
   echo "Homebrew not found. Installing..."
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-  # 再度環境設定
+  # Setup environment again
   if [ -f /opt/homebrew/bin/brew ]; then
     eval "$(/opt/homebrew/bin/brew shellenv)"
   elif [ -f /usr/local/bin/brew ]; then
