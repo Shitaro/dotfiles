@@ -130,10 +130,13 @@ brew services start sketchybar
 Initial setup (run once):
 
 ```bash
-# Move existing config to dotfiles
-mv ~/.config/karabiner ~/dotfiles/.config/karabiner
+# If you have existing config and dotfiles/karabiner is empty, move it
+if [ -d ~/.config/karabiner ] && [ ! -e ~/dotfiles/.config/karabiner/karabiner.json ]; then
+  mv ~/.config/karabiner ~/dotfiles/.config/karabiner
+fi
 
-# Create symlink
+# Remove existing directory/symlink and create fresh symlink
+rm -rf ~/.config/karabiner
 ln -s ~/dotfiles/.config/karabiner ~/.config/karabiner
 
 # Restart Karabiner service
