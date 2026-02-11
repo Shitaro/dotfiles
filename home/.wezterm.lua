@@ -133,12 +133,15 @@ if keyhelp then
 				desc = "コマンドパレット", category = "その他" },
 			{ key = "R", mods = "LEADER", action = act.ReloadConfiguration,
 				desc = "設定再読み込み", category = "その他" },
+			{ key = "d", mods = "CMD", action = act.CopyMode({ MoveByPage = 0.5 }), hidden = true },
+			{ key = "u", mods = "CMD", action = act.CopyMode({ MoveByPage = -0.5 }), hidden = true },
 			-- コピーモード（参照エントリ: 表示のみ）
 			{ display_key = "h/j/k/l", desc = "移動", category = "コピーモード" },
 			{ display_key = "w/b", desc = "次/前の単語", category = "コピーモード" },
 			{ display_key = "0/$", desc = "行頭/行末", category = "コピーモード" },
 			{ display_key = "v/V", desc = "文字/行選択", category = "コピーモード" },
 			{ display_key = "y", desc = "コピーして終了", category = "コピーモード" },
+			{ display_key = "d/u", display_mods = "Cmd", desc = "半ページ↓/↑", category = "コピーモード" },
 			{ display_key = "Esc/q", desc = "キャンセル", category = "コピーモード" },
 			-- リサイズモード（参照エントリ: 表示のみ）
 			{ display_key = "h/j/k/l", display_mods = "リサイズ中", desc = "サイズ調整", category = "リサイズモード" },
