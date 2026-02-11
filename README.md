@@ -133,4 +133,5 @@ task symlink
 |---------|-------------|
 | `task --list` | Show available tasks |
 | `task symlink` | Create/update all symlinks |
+| `task clean` | Remove all dotfile symlinks |
 | `task brew` | Install Homebrew packages |
