@@ -22,6 +22,11 @@ tasks:
       # Home directory
       - for: [.zshrc, .zprofile, .zshenv, .zsh_plugins.txt, .gitconfig, .wezterm.lua]
         cmd: ln -sf {{.DOTFILES_DIR}}/home/{{.ITEM}} {{.HOME_DIR}}/{{.ITEM}}
+      # WezTerm plugins
+      - cmd: |
+          target="{{.HOME_DIR}}/.wezterm-plugins"
+          [ -e "$target" ] && [ ! -L "$target" ] && mv "$target" "$target.bak.$(date +%s)"
+          ln -sfn {{.DOTFILES_DIR}}/home/.wezterm-plugins "$target"
       # .config directory
       - mkdir -p {{.CONFIG_DIR}}/aerospace {{.CONFIG_DIR}}/atuin {{.CONFIG_DIR}}/sketchybar/plugins
       - ln -sf {{.DOTFILES_DIR}}/.config/aerospace/aerospace.toml {{.CONFIG_DIR}}/aerospace/aerospace.toml
@@ -39,6 +44,8 @@ tasks:
       # Home directory
       - for: [.zshrc, .zprofile, .zshenv, .zsh_plugins.txt, .gitconfig, .wezterm.lua]
         cmd: rm -f {{.HOME_DIR}}/{{.ITEM}}
+      # WezTerm plugins
+      - cmd: '[ -L {{.HOME_DIR}}/.wezterm-plugins ] && rm {{.HOME_DIR}}/.wezterm-plugins || true'
       # .config directory
       - rm -f {{.CONFIG_DIR}}/aerospace/aerospace.toml
       - rm -f {{.CONFIG_DIR}}/atuin/config.toml
