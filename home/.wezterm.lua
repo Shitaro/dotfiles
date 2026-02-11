@@ -1,6 +1,12 @@
 -- WezTerm configuration
 local wezterm = require("wezterm")
 local config = wezterm.config_builder()
+local act = wezterm.action
+local ok, keyhelp = pcall(dofile, wezterm.home_dir .. "/.wezterm-plugins/keyhelp/plugin/init.lua")
+if not ok then
+	wezterm.log_error("keyhelp plugin failed to load: " .. tostring(keyhelp) .. " -- run 'task install' to fix symlinks")
+	keyhelp = nil
+end
 
 -- =============================================================================
 -- 外観設定
@@ -66,121 +72,90 @@ config.cursor_blink_rate = 500
 -- キーバインド（tmux風: Cmd+b がリーダーキー）
 -- =============================================================================
 
-config.leader = { key = "b", mods = "CMD", timeout_milliseconds = 10000 }
-config.keys = {
-	-- Claude Code: Shift+Enter で改行
-	{ key = "Enter", mods = "SHIFT", action = wezterm.action.SendString("\x1b\r") },
-
-	-- ペイン分割
-	{ key = "\\", mods = "LEADER", action = wezterm.action.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
-	{ key = "-", mods = "LEADER", action = wezterm.action.SplitVertical({ domain = "CurrentPaneDomain" }) },
-
-	-- ペイン移動
-	{ key = "h", mods = "LEADER", action = wezterm.action.ActivatePaneDirection("Left") },
-	{ key = "j", mods = "LEADER", action = wezterm.action.ActivatePaneDirection("Down") },
-	{ key = "k", mods = "LEADER", action = wezterm.action.ActivatePaneDirection("Up") },
-	{ key = "l", mods = "LEADER", action = wezterm.action.ActivatePaneDirection("Right") },
-
-	-- ペインを閉じる
-	{ key = "x", mods = "LEADER", action = wezterm.action.CloseCurrentPane({ confirm = true }) },
-
-	-- リサイズモードに入る
-	{ key = "r", mods = "LEADER", action = wezterm.action.ActivateKeyTable({ name = "resize_pane", one_shot = false }) },
-
-	-- ペイン最大化トグル
-	{ key = "z", mods = "LEADER", action = wezterm.action.TogglePaneZoomState },
-
-	-- 新規タブ
-	{ key = "c", mods = "LEADER", action = wezterm.action.SpawnTab("CurrentPaneDomain") },
-
-	-- タブ移動
-	{ key = "n", mods = "LEADER", action = wezterm.action.ActivateTabRelative(1) },
-	{ key = "p", mods = "LEADER", action = wezterm.action.ActivateTabRelative(-1) },
-
-	-- コマンドパレット
-	{ key = "P", mods = "LEADER", action = wezterm.action.ActivateCommandPalette },
-
-	-- 設定再読み込み
-	{ key = "R", mods = "LEADER", action = wezterm.action.ReloadConfiguration },
-
-	-- Quick Select
-	{ key = "s", mods = "LEADER", action = wezterm.action.QuickSelect },
-
-	-- コピーモード
-	{ key = "[", mods = "LEADER", action = wezterm.action.ActivateCopyMode },
-
-	-- 検索
-	{ key = "F", mods = "CMD|SHIFT", action = wezterm.action.Search({ CaseInSensitiveString = "" }) },
-
-	-- フルスクリーン
-	{ key = "f", mods = "LEADER", action = wezterm.action.ToggleFullScreen },
-
-	-- ヘルプ（キーバインド一覧）
-	{ key = "?", mods = "LEADER", action = wezterm.action.SpawnCommandInNewTab({
-		args = { "/bin/sh", "-c", [[
-cat << 'EOF' | less -R
-  WezTerm キーバインド一覧 (Leader: Cmd+b)
-  ==========================================
-
-  ペイン操作
-  ----------
-  \       左右に分割
-  -       上下に分割
-  h/j/k/l ペイン移動
-  x       ペインを閉じる
-  z       ペイン最大化/解除
-  r       リサイズモード (h/j/k/l で調整, Esc で終了)
-
-  タブ操作
-  --------
-  c       新規タブ
-  n       次のタブ
-  p       前のタブ
-
-  ワークスペース
-  --------------
-  w       一覧/切り替え
-  W       新規作成
-
-  その他
-  ------
-  s       Quick Select
-  [       コピーモード
-  f       フルスクリーン
-  P       コマンドパレット
-  R       設定再読み込み
-  ?       このヘルプ
-
-  コピーモード (Leader + [)
-  -------------------------
-  h/j/k/l   移動
-  w/b       次/前の単語
-  0/$       行頭/行末
-  g/G       先頭/末尾
-  Ctrl+u/d  半ページ上/下
-  v/V       文字/行選択
-  Ctrl+v    矩形選択
-  y         コピーして終了
-  Esc/q     キャンセル
-
-  検索: Cmd+Shift+F
-
-  (j/k: スクロール, q: 終了)
-EOF
-]] },
-	}) },
-
-	-- ワークスペース
-	{ key = "w", mods = "LEADER", action = wezterm.action.ShowLauncherArgs({ flags = "WORKSPACES" }) },
-	{ key = "W", mods = "LEADER", action = wezterm.action.PromptInputLine({
-		description = "New workspace name:",
-		action = wezterm.action_callback(function(window, pane, line)
-			if line then
-				window:perform_action(wezterm.action.SwitchToWorkspace({ name = line }), pane)
-			end
-		end),
-	}) },
-}
+if keyhelp then
+	keyhelp.apply_to_config(config, {
+		leader = { key = "b", mods = "CMD", timeout_milliseconds = 10000 },
+		leader_display = "Cmd+b",
+		title = "キーバインド一覧",
+		fuzzy = true,
+		fuzzy_description = wezterm.format({
+			{ Attribute = { Intensity = "Bold" } },
+			{ Foreground = { Color = "#7dcfff" } },
+			{ Text = "Search: " },
+		}),
+		keybindings = {
+			-- 特殊キー
+			{ key = "Enter", mods = "SHIFT", action = act.SendString("\x1b\r"),
+				desc = "改行 (Claude Code)", category = "特殊" },
+			-- ペイン操作
+			{ key = "\\", mods = "LEADER", action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }),
+				desc = "左右に分割", category = "ペイン操作" },
+			{ key = "-", mods = "LEADER", action = act.SplitVertical({ domain = "CurrentPaneDomain" }),
+				desc = "上下に分割", category = "ペイン操作" },
+			{ key = "h", mods = "LEADER", action = act.ActivatePaneDirection("Left"), hidden = true },
+			{ key = "j", mods = "LEADER", action = act.ActivatePaneDirection("Down"), hidden = true },
+			{ key = "k", mods = "LEADER", action = act.ActivatePaneDirection("Up"), hidden = true },
+			{ key = "l", mods = "LEADER", action = act.ActivatePaneDirection("Right"), hidden = true },
+			{ display_key = "h/j/k/l", mods = "LEADER", desc = "ペイン移動", category = "ペイン操作" },
+			{ key = "x", mods = "LEADER", action = act.CloseCurrentPane({ confirm = true }),
+				desc = "ペインを閉じる", category = "ペイン操作" },
+			{ key = "z", mods = "LEADER", action = act.TogglePaneZoomState,
+				desc = "最大化/解除", category = "ペイン操作" },
+			{ key = "r", mods = "LEADER", action = act.ActivateKeyTable({ name = "resize_pane", one_shot = false }),
+				desc = "リサイズモード", category = "ペイン操作" },
+			-- タブ操作
+			{ key = "c", mods = "LEADER", action = act.SpawnTab("CurrentPaneDomain"),
+				desc = "新規タブ", category = "タブ操作" },
+			{ key = "n", mods = "LEADER", action = act.ActivateTabRelative(1),
+				desc = "次のタブ", category = "タブ操作" },
+			{ key = "p", mods = "LEADER", action = act.ActivateTabRelative(-1),
+				desc = "前のタブ", category = "タブ操作" },
+			-- ワークスペース
+			{ key = "w", mods = "LEADER", action = act.ShowLauncherArgs({ flags = "WORKSPACES" }),
+				desc = "一覧/切り替え", category = "ワークスペース" },
+			{ key = "W", mods = "LEADER", action = act.PromptInputLine({
+				description = "New workspace name:",
+				action = wezterm.action_callback(function(window, pane, line)
+					if line then window:perform_action(act.SwitchToWorkspace({ name = line }), pane) end
+				end),
+			}),
+				desc = "新規作成", category = "ワークスペース" },
+			-- その他
+			{ key = "s", mods = "LEADER", action = act.QuickSelect,
+				desc = "Quick Select", category = "その他" },
+			{ key = "[", mods = "LEADER", action = act.ActivateCopyMode,
+				desc = "コピーモード", category = "その他" },
+			{ key = "F", mods = "CMD|SHIFT", action = act.Search({ CaseInSensitiveString = "" }),
+				desc = "検索", category = "その他" },
+			{ key = "f", mods = "LEADER", action = act.ToggleFullScreen,
+				desc = "フルスクリーン", category = "その他" },
+			{ key = "P", mods = "LEADER", action = act.ActivateCommandPalette,
+				desc = "コマンドパレット", category = "その他" },
+			{ key = "R", mods = "LEADER", action = act.ReloadConfiguration,
+				desc = "設定再読み込み", category = "その他" },
+			-- コピーモード（参照エントリ: 表示のみ）
+			{ display_key = "h/j/k/l", desc = "移動", category = "コピーモード" },
+			{ display_key = "w/b", desc = "次/前の単語", category = "コピーモード" },
+			{ display_key = "0/$", desc = "行頭/行末", category = "コピーモード" },
+			{ display_key = "v/V", desc = "文字/行選択", category = "コピーモード" },
+			{ display_key = "y", desc = "コピーして終了", category = "コピーモード" },
+			{ display_key = "Esc/q", desc = "キャンセル", category = "コピーモード" },
+			-- リサイズモード（参照エントリ: 表示のみ）
+			{ display_key = "h/j/k/l", display_mods = "リサイズ中", desc = "サイズ調整", category = "リサイズモード" },
+			{ display_key = "Esc/Enter", display_mods = "リサイズ中", desc = "モード終了", category = "リサイズモード" },
+		},
+		key_tables = {
+			resize_pane = {
+				{ key = "h", action = act.AdjustPaneSize({ "Left", 2 }) },
+				{ key = "j", action = act.AdjustPaneSize({ "Down", 2 }) },
+				{ key = "k", action = act.AdjustPaneSize({ "Up", 2 }) },
+				{ key = "l", action = act.AdjustPaneSize({ "Right", 2 }) },
+				{ key = "Escape", action = "PopKeyTable" },
+				{ key = "Enter", action = "PopKeyTable" },
+			},
+		},
+	})
+end
 
 -- =============================================================================
 -- 動作設定
@@ -359,21 +334,5 @@ wezterm.on("update-right-status", function(window, pane)
 
 	window:set_right_status(wezterm.format(cells))
 end)
-
--- =============================================================================
--- キーテーブル（モード）
--- =============================================================================
-
-config.key_tables = {
-	-- リサイズモード: h/j/k/l で調整、Escで終了
-	resize_pane = {
-		{ key = "h", action = wezterm.action.AdjustPaneSize({ "Left", 2 }) },
-		{ key = "j", action = wezterm.action.AdjustPaneSize({ "Down", 2 }) },
-		{ key = "k", action = wezterm.action.AdjustPaneSize({ "Up", 2 }) },
-		{ key = "l", action = wezterm.action.AdjustPaneSize({ "Right", 2 }) },
-		{ key = "Escape", action = "PopKeyTable" },
-		{ key = "Enter", action = "PopKeyTable" },
-	},
-}
 
 return config
