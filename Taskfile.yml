@@ -33,6 +33,22 @@ tasks:
       - ln -sf {{.DOTFILES_DIR}}/.config/starship.toml {{.CONFIG_DIR}}/starship.toml
       - rm -rf {{.CONFIG_DIR}}/karabiner && ln -sf {{.DOTFILES_DIR}}/.config/karabiner {{.CONFIG_DIR}}/karabiner
 
+  clean:
+    desc: Remove all dotfile symlinks
+    cmds:
+      # Home directory
+      - for: [.zshrc, .zprofile, .zshenv, .zsh_plugins.txt, .gitconfig, .wezterm.lua]
+        cmd: rm -f {{.HOME_DIR}}/{{.ITEM}}
+      # .config directory
+      - rm -f {{.CONFIG_DIR}}/aerospace/aerospace.toml
+      - rm -f {{.CONFIG_DIR}}/atuin/config.toml
+      - rm -f {{.CONFIG_DIR}}/sketchybar/sketchybarrc
+      - rm -f {{.CONFIG_DIR}}/sketchybar/plugins/aerospace.sh
+      - rm -f {{.CONFIG_DIR}}/sketchybar/plugins/clock.sh
+      - rm -f {{.CONFIG_DIR}}/sketchybar/plugins/front_app.sh
+      - rm -f {{.CONFIG_DIR}}/starship.toml
+      - rm -f {{.CONFIG_DIR}}/karabiner
+
   brew:
     desc: Install Homebrew packages
     platforms: [darwin]
