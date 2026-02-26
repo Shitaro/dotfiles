@@ -90,3 +90,23 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 
 # Local bin
 export PATH="$HOME/.local/bin:$PATH"
+
+# -----------------------------------------------------------------------------
+# Codex session flag for Karabiner rules (enable only while Codex is running)
+# -----------------------------------------------------------------------------
+codex() {
+  local _karabiner_cli="/Library/Application Support/org.pqrs/Karabiner-Elements/bin/karabiner_cli"
+
+  if [ -x "$_karabiner_cli" ]; then
+    "$_karabiner_cli" --set-variables '{"codex_active":1}' >/dev/null 2>&1
+  fi
+
+  command codex "$@"
+  local _status=$?
+
+  if [ -x "$_karabiner_cli" ]; then
+    "$_karabiner_cli" --set-variables '{"codex_active":0}' >/dev/null 2>&1
+  fi
+
+  return $_status
+}
