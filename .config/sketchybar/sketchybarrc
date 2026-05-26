@@ -2,6 +2,7 @@
 
 # SketchyBar configuration for AeroSpace integration
 
+CONFIG_DIR="${CONFIG_DIR:-$HOME/.config/sketchybar}"
 PLUGIN_DIR="$CONFIG_DIR/plugins"
 
 # Bar appearance (height=40 to fill notch area on MacBook)
@@ -25,8 +26,14 @@ sketchybar --default icon.font="SF Pro:Semibold:14.0" \
 # Register aerospace workspace change event
 sketchybar --add event aerospace_workspace_change
 
-# Add workspace items for each AeroSpace workspace
-for sid in $(aerospace list-workspaces --all); do
+# Add workspace items for each AeroSpace workspace. During login, AeroSpace can
+# start SketchyBar before its workspace list is ready, so keep the bar stable.
+WORKSPACES=$(aerospace list-workspaces --all 2>/dev/null)
+if [ -z "$WORKSPACES" ]; then
+    WORKSPACES="0 1 2 3 4 5 6 7 8 9"
+fi
+
+for sid in $WORKSPACES; do
     sketchybar --add item space.$sid left \
         --subscribe space.$sid aerospace_workspace_change \
         --set space.$sid \
@@ -71,5 +78,7 @@ sketchybar --add item clock right \
 sketchybar --update
 
 # Initialize: highlight the currently focused workspace
-FOCUSED=$(aerospace list-workspaces --focused)
-sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$FOCUSED
+FOCUSED=$(aerospace list-workspaces --focused 2>/dev/null)
+if [ -n "$FOCUSED" ]; then
+    sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$FOCUSED
+fi
